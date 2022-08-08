@@ -1,0 +1,22 @@
+{
+  "name": "beb-05-leesea",
+  "version": "1.0.0",
+  "description": "BEB-05-first-05",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyenne/BEB-05-LeeSea.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hyenne/BEB-05-LeeSea/issues"
+  },
+  "homepage": "https://github.com/hyenne/BEB-05-LeeSea#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

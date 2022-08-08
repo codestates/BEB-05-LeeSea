@@ -1,12 +1,34 @@
 const express = require("express")
 const cors = require("cors")
+const indexRouter = require('./router');
+
+
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+/*
+ * Main Router
+ */
+app.use('/', indexRouter);
+
+/*
+ * Error Handling
+ */
+app.use((req, res, next) => {
+  res.status(404).send('Not Found!');
+});
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({
+    message: 'Internal Server Error',
+    stacktrace: err.toString()
+  });
+});
+
+module.exports = app.listen(port, () => {
+  console.log(`      🚀 Server is starting on ${port}`);
+});

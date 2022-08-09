@@ -7,6 +7,7 @@ function Navbar({ account, setAccount }) {
         let accounts = await window.ethereum.request({
             method: "eth_requestAccounts",
         })
+        console.log(accounts)
         setAccount(accounts[0])
     }
     return (

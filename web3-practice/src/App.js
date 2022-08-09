@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import { Route, Routes } from "react-router-dom";
-import { Home, Profile } from './pages';
+import { Home, Profile, Explore } from './pages';
 import { useEffect, useState } from 'react';
 import Web3 from 'web3';
 
@@ -25,6 +25,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/explore" element={<Explore web3={web3} account={account}/>} />
       </Routes>
     </div>
   );

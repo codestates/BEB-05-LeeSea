@@ -21,7 +21,7 @@ function Navbar({ account, setAccount }) {
                     {/* items */}
                     <div>
                         <Link to="/" className="nav-item">Home</Link>
-                        <Link to="/" className="nav-item">Explore</Link>
+                        <Link to="/explore" className="nav-item">Explore</Link>
                         <Link to="/" className="nav-item">Create</Link>
                         <Link to="/profile" className="nav-item">Profile</Link>
                         {

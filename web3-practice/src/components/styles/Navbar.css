@@ -5,8 +5,16 @@
     color: #FFFFFF;
     outline: 0;
 }
+.connect-wallet-img {
+    width: 5%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 .logo {
     margin-right: 1rem;
+}
+.navbar-items {
+    text-align: right;
 }
 .nav-item {
     color: black;

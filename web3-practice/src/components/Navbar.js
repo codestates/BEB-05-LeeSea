@@ -26,14 +26,15 @@ function Navbar({ }) {
                         LeeSea
                     </Link>
                     {/* items */}
-                    <div>
+                    <div className="navbar-items">
                         <Link to="/" className="nav-item">Home</Link>
                         <Link to="/" className="nav-item">Explore</Link>
                         <Link to="/" className="nav-item">Create</Link>
                         <Link to="/profile" className="nav-item">Profile</Link>
                         {
                             account
-                            ? <button type="button" className="connect-wallet-btn btn btn-primary" disabled>지갑 연결 완료</button>
+                            // ? <button type="button" className="connect-wallet-btn btn btn-primary" disabled></button>
+                            ? <img className="connect-wallet-img" src="https://seeklogo.com/images/M/metamask-logo-09EDE53DBD-seeklogo.com.png" />
                             : <button type="button" className="connect-wallet-btn btn btn-primary" onClick={connectWallet}>Wallet</button>
                         }
                         

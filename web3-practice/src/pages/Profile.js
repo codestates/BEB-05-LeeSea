@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';  // redux
+import { setAccount } from "../redux/actions";  // redux
+import { useSelector, useDispatch } from 'react-redux'; // redux
 import Web3 from 'web3'
 import '../components/styles/Profile.css'
 import erc721Abi from '../erc721Abi'
@@ -11,6 +12,12 @@ function Profile({ }) {
 
   let accountState = useSelector((state) => state.accountReducer)
   let { account } = accountState
+
+  const dispatch = useDispatch()
+
+  let signout = () => {
+      dispatch(setAccount(''))
+  }
   // let getTokens = async () => {
   //   console.log(Web3.eth)
   //   let contract = await new Web3.eth.Contract(erc721Abi, contractAddr)
@@ -41,7 +48,7 @@ function Profile({ }) {
       <div className="profile-header">
         <div className="profile-header-1">
           <h2 className="profile-header-title">Profile</h2>
-          <button type="button" className="logout-btn btn btn-outline-danger">로그아웃</button>
+          <button type="button" className="logout-btn btn btn-outline-danger" onClick={signout}>로그아웃</button>
         </div>
         <div className="profile-header-2">
           <img className="profile-header-2-image" src="https://static.opensea.io/general/ETH.svg" />

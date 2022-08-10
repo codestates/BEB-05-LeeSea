@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
-import './styles/Navbar.css';
+import { setAccount } from "../redux/actions";  // redux
+import { useSelector, useDispatch } from 'react-redux'; // redux
 import Web3 from 'web3'
+import './styles/Navbar.css';
 
-function Navbar({ account, setAccount }) {
+function Navbar({ }) {
+    const accountState = useSelector((state) => state.accountReducer)
+    const { account } = accountState
+    const dispatch = useDispatch()
+
     let connectWallet = async () => {
         let accounts = await window.ethereum.request({
             method: "eth_requestAccounts",
         })
-        console.log(accounts)
-        setAccount(accounts[0])
+        dispatch(setAccount(accounts[0]))
     }
+
     return (
         <div className="Navbar">
             <nav className="navbar navbar-expand-lg bg-light">

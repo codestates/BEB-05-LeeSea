@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';  // redux
 import Web3 from 'web3'
 import '../components/styles/Profile.css'
 import erc721Abi from '../erc721Abi'
 
-function Profile({ account }) {
+
+function Profile({ }) {
   let contractAddr = '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89'
   let [myTokenList, setMyTokenList] = useState(['An item', 'A second item', 'A third item', 'Afourth item', 'And a fifth one'])
 
+  let accountState = useSelector((state) => state.accountReducer)
+  let { account } = accountState
   // let getTokens = async () => {
   //   console.log(Web3.eth)
   //   let contract = await new Web3.eth.Contract(erc721Abi, contractAddr)
@@ -54,7 +58,7 @@ function Profile({ account }) {
             <hr className="profile-item-list-line" />
             {
               myTokenList.map((token) => {
-                return <li className="list-group-item">{ token }</li>
+                return <li className="list-group-item" key={token}>{ token }</li>
               })
             }
           </ul>
@@ -66,7 +70,7 @@ function Profile({ account }) {
           <hr className="profile-item-list-line" />
             {
               myTokenList.map((token) => {
-                return <li className="list-group-item">{ token }</li>
+                return <li className="list-group-item" key={token}>{ token }</li>
               })
             }
           </ul>

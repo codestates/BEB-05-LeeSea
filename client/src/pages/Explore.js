@@ -24,14 +24,20 @@ function Explore({web3, account}){
             let tokenOwner = await tokenContract.methods
                 .ownerOf(tokenId)
                 .call();
-            if (String(tokenOwner).toLowerCase()===account){
-                let tokenURI = await tokenContract.methods
-                    .tokenURI(tokenId)
-                    .call();
-                setErc721List((prevState)=>{
-                    return [...prevState, { name, symbol, tokenId, tokenURI}];
-                })
-            }
+            let tokenURI = await tokenContract.methods
+                .tokenURI(tokenId)
+                .call();
+            setErc721List((prevState)=>{
+                return [...prevState, { name, symbol, tokenId, tokenURI}];
+            })
+            // if (String(tokenOwner).toLowerCase()===account){
+            //     let tokenURI = await tokenContract.methods
+            //         .tokenURI(tokenId)
+            //         .call();
+            //     setErc721List((prevState)=>{
+            //         return [...prevState, { name, symbol, tokenId, tokenURI}];
+            //     })
+            // }
         }
 
     }

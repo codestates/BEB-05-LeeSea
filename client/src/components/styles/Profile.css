@@ -1,0 +1,36 @@
+.profile-header {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    text-align: left;
+    width: 100%;
+    
+}
+.profile-header-1 {
+    display: flex;
+    margin-bottom: 1rem;
+}
+.profile-header-2-image {
+    width: 1%;
+    margin-right: 1rem;
+}
+.profile-header-title {
+    margin-right: 2rem;
+}
+.profile-item-header {
+    font-weight: bold;
+    margin-left: 2rem;
+    text-align: left;
+}
+.profile-item-list {
+    margin: 1rem;
+}
+.profile-item-list-line {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.logout-btn {
+    color: #ED0F0F;
+    border: 1px solid #ED0F0F
+}

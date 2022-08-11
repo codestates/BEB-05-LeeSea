@@ -1,23 +1,55 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { setAccount } from "../redux/actions";  // redux
 import { useSelector, useDispatch } from 'react-redux'; // redux
-import Web3 from 'web3'
-import '../components/styles/Profile.css'
-import erc721Abi from '../erc721Abi'
+import '../components/styles/Profile.css';
+import erc721Abi from '../erc721Abi';
+import TokenList from '../components/TokenList';
 
 
-function Profile({ }) {
-  let contractAddr = '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89'
-  let [myTokenList, setMyTokenList] = useState(['An item', 'A second item', 'A third item', 'Afourth item', 'And a fifth one'])
+function Profile({web3 }) {
+  let contractAddr = '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89';
+  let contractAddr1 = '0x29Db1FF7966634D1d526225387a5F372294C0A6c';
+  let [myTokenList, setMyTokenList] = useState(['An item', 'A second item', 'A third item', 'Afourth item', 'And a fifth one']);
+  const [ownedTokenList, setOwnedTokenList] = useState([]);
 
-  let accountState = useSelector((state) => state.accountReducer)
-  let { account } = accountState
+  let accountState = useSelector((state) => state.accountReducer);
+  let { account } = accountState;
 
   const dispatch = useDispatch()
 
   let signout = () => {
       dispatch(setAccount(''))
   }
+
+  const getOwnedToken = async() => {
+    const tokenContract = await new web3.eth.Contract(
+      erc721Abi,
+      contractAddr1
+    );
+    const name = await tokenContract.methods.name().call();
+    const symbol = await tokenContract.methods.symbol().call();
+    const totalSupply = await tokenContract.methods.totalSupply().call();
+    
+    let arr = [];
+    for (let i = 1; i<=totalSupply; i++){
+        arr.push(i);
+    }
+
+    for(let tokenId of arr){
+        let tokenOwner = await tokenContract.methods
+            .ownerOf(tokenId)
+            .call();
+        if (String(tokenOwner).toLowerCase()===account){
+            let tokenURI = await tokenContract.methods
+                .tokenURI(tokenId)
+                .call();
+            setOwnedTokenList((prevState)=>{
+                return [...prevState, { name, symbol, tokenId, tokenURI}];
+            })
+        }
+    }
+  }
+  
   // let getTokens = async () => {
   //   console.log(Web3.eth)
   //   let contract = await new Web3.eth.Contract(erc721Abi, contractAddr)
@@ -38,8 +70,9 @@ function Profile({ }) {
   //   }
 
   // }
-
+  
   useEffect(() => {
+    getOwnedToken();
     // getTokens()
   }, [])
 
@@ -75,11 +108,7 @@ function Profile({ }) {
           <h5 className="profile-item-header">구매 목록</h5>
           <ul className="profile-item-list list-group list-group-flush">
           <hr className="profile-item-list-line" />
-            {
-              myTokenList.map((token) => {
-                return <li className="list-group-item" key={token}>{ token }</li>
-              })
-            }
+          <TokenList erc721List = {ownedTokenList} />
           </ul>
         </div>
       </div>

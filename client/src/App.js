@@ -30,7 +30,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore web3={web3} account={account}/>} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile web3={web3} />} />
       </Routes>
     </div>
   );

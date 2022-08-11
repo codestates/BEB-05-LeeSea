@@ -1,4 +1,4 @@
-import erc721Abi from "../erc721Abi"
+import erc721Abi from "../erc721Abi";
 import { useState } from 'react';
 import TokenList from '../components/TokenList';
 
@@ -21,17 +21,12 @@ function Explore({web3, account}){
         }
 
         for(let tokenId of arr){
-            let tokenOwner = await tokenContract.methods
-                .ownerOf(tokenId)
+            let tokenURI = await tokenContract.methods
+                .tokenURI(tokenId)
                 .call();
-            if (String(tokenOwner).toLowerCase()===account){
-                let tokenURI = await tokenContract.methods
-                    .tokenURI(tokenId)
-                    .call();
-                setErc721List((prevState)=>{
-                    return [...prevState, { name, symbol, tokenId, tokenURI}];
-                })
-            }
+            setErc721List((prevState)=>{
+                return [...prevState, { name, symbol, tokenId, tokenURI}];
+            })
         }
 
     }

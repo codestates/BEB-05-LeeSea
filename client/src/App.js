@@ -9,9 +9,13 @@ import { useSelector } from 'react-redux'; // redux
 
 
 function App() {
-  let [web3, setWeb3] = useState()
-  let accountState = useSelector((state) => state.accountReducer)
-  let { account } = accountState
+  let [web3, setWeb3] = useState();
+  let accountState = useSelector((state) => state.accountReducer);
+  let { account } = accountState;
+  const [contractList, setContractList] = useState([
+    '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89',
+    '0x29Db1FF7966634D1d526225387a5F372294C0A6c'
+  ]);
 
 
   useEffect(() => {
@@ -29,8 +33,8 @@ function App() {
       <Navbar />
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore web3={web3} account={account}/>} />
-          <Route path="/profile" element={<Profile web3={web3} />} />
+          <Route path="/explore" element={<Explore web3={web3} account={account} contractList={contractList}/>} />
+          <Route path="/profile" element={<Profile web3={web3} contractList={contractList}/>} />
       </Routes>
     </div>
   );

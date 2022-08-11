@@ -9,9 +9,14 @@ import { useSelector } from 'react-redux'; // redux
 import { CONTRACT_ADDR as contractAddr } from './global_variables';
 
 function App() {
-  let [web3, setWeb3] = useState()
-  let accountState = useSelector((state) => state.accountReducer)
-  let { account } = accountState
+  let [web3, setWeb3] = useState();
+  let accountState = useSelector((state) => state.accountReducer);
+  let { account } = accountState;
+  const [contractList, setContractList] = useState([
+    '0x2e03ef77518f0ddeb042ab3de778a64737a983ea', // 새로운 주소
+    '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89',
+    '0x29Db1FF7966634D1d526225387a5F372294C0A6c'
+  ]);
 
 
   useEffect(() => {
@@ -29,9 +34,9 @@ function App() {
       <Navbar />
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore web3={web3} account={account}/>} />
+          <Route path="/explore" element={<Explore web3={web3} account={account} contractList={contractList}/>} />
           <Route path="/create" element={<Create contractAddr={contractAddr} web3={web3} />} />
-          <Route path="/profile" element={<Profile web3={web3} />} />
+          <Route path="/profile" element={<Profile web3={web3} contractList={contractList} />} />
       </Routes>
     </div>
   );

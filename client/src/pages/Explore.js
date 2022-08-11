@@ -35,6 +35,7 @@ function Explore({web3, account, contractList, navigate, erc721List, setErc721Li
     }
 
     useEffect(() => {
+        setErc721List([]);
         loadTokens();
     }, [contractList])
 

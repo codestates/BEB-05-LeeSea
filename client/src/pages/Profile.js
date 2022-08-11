@@ -6,9 +6,7 @@ import erc721Abi from '../erc721Abi';
 import TokenList from '../components/TokenList';
 
 
-function Profile({web3 }) {
-  let contractAddr = '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89';
-  let contractAddr1 = '0x29Db1FF7966634D1d526225387a5F372294C0A6c';
+function Profile({web3, contractList}) {
   let [myTokenList, setMyTokenList] = useState(['An item', 'A second item', 'A third item', 'Afourth item', 'And a fifth one']);
   const [ownedTokenList, setOwnedTokenList] = useState([]);
 
@@ -21,10 +19,10 @@ function Profile({web3 }) {
       dispatch(setAccount(''))
   }
 
-  const getOwnedToken = async() => {
+  const getOwnedToken = async(erc721Addr) => {
     const tokenContract = await new web3.eth.Contract(
       erc721Abi,
-      contractAddr1
+      erc721Addr
     );
     const name = await tokenContract.methods.name().call();
     const symbol = await tokenContract.methods.symbol().call();
@@ -49,32 +47,17 @@ function Profile({web3 }) {
         }
     }
   }
+ 
   
-  // let getTokens = async () => {
-  //   console.log(Web3.eth)
-  //   let contract = await new Web3.eth.Contract(erc721Abi, contractAddr)
-  //   console.log(contract)
+  const loadTokens = async () => {
+    for (let addr of contractList) {
+        await getOwnedToken(addr)
+      }
+  }
 
-  //   let name = await contract.methods.name().call()
-  //   let symbol = await contract.methods.symbol().call()
-  //   let totalSupply = await contract.methods.totalSupply().call()
-
-  //   let arr = []
-  //   for (let i = 1; i <= totalSupply; i++) arr.push(i)
-  //   for (let tokenId of arr) {
-  //     let tokenOwner = await contract.methods.ownerOf(tokenId).call()
-  //     if (String(tokenOwner).toLowerCase() === account) {
-  //       let tokenURI = await contract.methods.tokenURI(tokenId).call()
-  //       setMyTokenList((prevState) => [...prevState, { name, symbol, tokenId, tokenURI }])
-  //     }
-  //   }
-
-  // }
-  
   useEffect(() => {
-    getOwnedToken();
-    // getTokens()
-  }, [])
+      loadTokens();
+  }, [contractList])
 
   return (
     <div className="Profile">

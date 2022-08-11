@@ -6,8 +6,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { Home, Profile, Create, Explore } from './pages';
 import { useSelector } from 'react-redux'; // redux
-
-let contractAddr = '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89'
+import { CONTRACT_ADDR as contractAddr } from './global_variables';
 
 function App() {
   let [web3, setWeb3] = useState()

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-// import { NFTStorage, File } from 'nft.storage'
 import '../components/styles/Create.css'
 import erc721Abi from '../erc721Abi'
 
-// const client = new NFTStorage({ token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEY4MzIwNDEyNjNCNzIxNGFkMTgzODRkODUyZTlCMkE1RjI3ODk5YjUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MDE4NTk3NDM3MCwibmFtZSI6IkxlZVNlYSJ9.KOH4TtUpzAbdRpuKyfg8XYon-kOR87GVp65lEtPfj4E' })
+import axios from 'axios'
+import { NFTStorage } from "nft.storage/dist/bundle.esm.min.js";
+import { NFT_STORAGE_API_KEY as API_KEY } from '../global_variables'
 
 function Create({ contractAddr, web3 }) {
     let [imgSrc, setImgSrc] = useState("https://cdn.pixabay.com/photo/2013/04/01/21/30/photo-99135_1280.png")
@@ -43,26 +44,44 @@ function Create({ contractAddr, web3 }) {
         }
         else {
             try {
-                // let metadata = await client.store({
-                //     name: name,
-                //     description: desc,
-                // })
-                // console.log(metadata.url)
+                let image = fileBlob
+                let data = {
+                    image,
+                    name: name,
+                    description: desc,
+                    properties: {
+                        price: price
+                    }
+                }
 
-                // let url = `https://ipfs.infura.io/ipfs/${file.path}`
-                // setImgSrc(url)
-                // let metaData = {
-                //     name: name,
-                //     description: desc,
-                //     price: price,
-                //     image: url,
-                // }
-                // let { data } = await client.add(JSON.stringify(metaData))
-                // let tokenURI = `https://ipfs.infura.io/ipfs/${data.path}`
+                let client = new NFTStorage({ token: API_KEY })
+                let metadata = await client.store(data)
 
-                // let tokenContract = await new web3.eth.Contract(erc721Abi, contractAddr)
+                console.log('hello!!')
+                console.log(metadata)
+                console.log(metadata.url)
+                let url = metadata.url.slice(7)
+                console.log(url)
+                let tokenURI = `https://ipfs.io/ipfs/${url}`
+                console.log(tokenURI)
+                // ipfs://bafyreibhe3rzzgcl2q5lvucloqm7we2gw4gh5kvapfrhiohsik3eigsf3a/metadata.json
+                // https://ipfs.io/ipfs/bafyreibhe3rzzgcl2q5lvucloqm7we2gw4gh5kvapfrhiohsik3eigsf3a/metadata.json
+                // axios.get(tokenURI)
+                    // .then((res) => console.log(res))
 
-                // let nft = await tokenContract.methods.mintNFT(account, tokenURI).send({from: account})
+
+                console.log(contractAddr)
+                let tokenContract = await new web3.eth.Contract(erc721Abi, contractAddr)
+                console.log(tokenContract)
+                let nft = await tokenContract.methods.mintNFT(account, tokenURI).send({
+                    from: account,
+                    gas: 1500000,
+                    gasPrice: '3000000'
+                })
+                .on('receipt', (res) => {
+                    console.log(res)
+                })
+                console.log(nft)
             }
             catch (error) {
                 console.log(error)

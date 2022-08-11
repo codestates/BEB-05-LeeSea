@@ -3,16 +3,15 @@ import { useSelector } from 'react-redux'
 import '../components/styles/Create.css'
 import erc721Abi from '../erc721Abi'
 
-import axios from 'axios'
 import { NFTStorage } from "nft.storage/dist/bundle.esm.min.js";
 import { NFT_STORAGE_API_KEY as API_KEY } from '../global_variables'
 
 function Create({ contractAddr, web3 }) {
     let [imgSrc, setImgSrc] = useState("https://cdn.pixabay.com/photo/2013/04/01/21/30/photo-99135_1280.png")
     let [fileBlob, setFileBlob] = useState("")
-    let [name, setName] = useState("lip pepe")
-    let [desc, setDesc] = useState("lip pepe is cute.")
-    let [price, setPrice] = useState("0.1")
+    let [name, setName] = useState("")
+    let [desc, setDesc] = useState("")
+    let [price, setPrice] = useState("")
     let accountState = useSelector((state) => state.accountReducer)
     let { account } = accountState
 
@@ -36,7 +35,7 @@ function Create({ contractAddr, web3 }) {
         setDesc(value)
     }
     let handleChangePrice = (value) => {
-        setDesc(value)
+        setPrice(value)
     }
     let createNft = async () => {
         if (account === "" || imgSrc === "" || name === "") {
@@ -56,23 +55,12 @@ function Create({ contractAddr, web3 }) {
 
                 let client = new NFTStorage({ token: API_KEY })
                 let metadata = await client.store(data)
+                alert("IPFS에 데이터 저장 완료")
 
-                console.log('hello!!')
-                console.log(metadata)
-                console.log(metadata.url)
                 let url = metadata.url.slice(7)
-                console.log(url)
                 let tokenURI = `https://ipfs.io/ipfs/${url}`
-                console.log(tokenURI)
-                // ipfs://bafyreibhe3rzzgcl2q5lvucloqm7we2gw4gh5kvapfrhiohsik3eigsf3a/metadata.json
-                // https://ipfs.io/ipfs/bafyreibhe3rzzgcl2q5lvucloqm7we2gw4gh5kvapfrhiohsik3eigsf3a/metadata.json
-                // axios.get(tokenURI)
-                    // .then((res) => console.log(res))
 
-
-                console.log(contractAddr)
                 let tokenContract = await new web3.eth.Contract(erc721Abi, contractAddr)
-                console.log(tokenContract)
                 let nft = await tokenContract.methods.mintNFT(account, tokenURI).send({
                     from: account,
                     gas: 1500000,
@@ -80,6 +68,7 @@ function Create({ contractAddr, web3 }) {
                 })
                 .on('receipt', (res) => {
                     console.log(res)
+                    alert("민팅 완료")
                 })
                 console.log(nft)
             }

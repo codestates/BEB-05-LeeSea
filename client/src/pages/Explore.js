@@ -1,26 +1,25 @@
 import erc721Abi from "../erc721Abi";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TokenList from '../components/TokenList';
 
-function Explore({web3, account}){
-    const [newErc721Addr, setNewErc721Addr] = useState();
-    const [erc721List, setErc721List] = useState([]);
+function Explore({web3, account, contractList, navigate, erc721List, setErc721List}){
+    // const [erc721List, setErc721List] = useState([]);
 
-    const addNewErc721Token = async() => {
+    const addNewErc721Token = async(erc721Addr) => {
         const tokenContract = await new web3.eth.Contract(
             erc721Abi,
-            newErc721Addr
+            erc721Addr
         );
         const name = await tokenContract.methods.name().call();
         const symbol = await tokenContract.methods.symbol().call();
         const totalSupply = await tokenContract.methods.totalSupply().call();
         
         let arr = [];
-        for (let i = 1; i<=totalSupply; i++){
+        for (let i = 1; i<=totalSupply; i++) {
             arr.push(i);
         }
 
-        for(let tokenId of arr){
+        for (let tokenId of arr) {
             let tokenURI = await tokenContract.methods
                 .tokenURI(tokenId)
                 .call();
@@ -28,20 +27,20 @@ function Explore({web3, account}){
                 return [...prevState, { name, symbol, tokenId, tokenURI}];
             })
         }
-
     }
 
+    const loadTokens = async () => {
+        for (let addr of contractList) {
+            await addNewErc721Token(addr)
+        }
+    }
+
+    useEffect(() => {
+        loadTokens();
+    }, [contractList])
+
     return (
-        <><div className="newErc721">
-            <input
-                type="text"
-                onChange={(e) => {
-                    setNewErc721Addr(e.target.value); //update newErc721Addr
-                } }
-            ></input>
-        </div><button onClick={addNewErc721Token}>add new erc721</button>        
-        <TokenList erc721List = {erc721List} />
-        </>
+        <TokenList erc721List={erc721List} navigate={navigate}/>
     )
 }  
 export default Explore

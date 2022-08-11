@@ -4,9 +4,10 @@ import Web3 from 'web3';
 
 import './App.css';
 import Navbar from './components/Navbar';
-import { Home, Profile, Explore } from './pages';
+import { Home, Profile, Create, Explore } from './pages';
 import { useSelector } from 'react-redux'; // redux
 
+let contractAddr = '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89'
 
 function App() {
   let [web3, setWeb3] = useState()
@@ -30,6 +31,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore web3={web3} account={account}/>} />
+          <Route path="/create" element={<Create contractAddr={contractAddr} web3={web3} />} />
           <Route path="/profile" element={<Profile web3={web3} />} />
       </Routes>
     </div>

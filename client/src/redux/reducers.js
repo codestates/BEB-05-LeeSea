@@ -3,7 +3,6 @@ import { SET_ACCOUNT } from './actions';
 import { initialState } from './initialState';
 
 const accountReducer = (state = initialState, action) => {
-    console.log(action.payload)
   switch (action.type) {
     case SET_ACCOUNT:
       return Object.assign({}, state, {

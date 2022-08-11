@@ -14,6 +14,7 @@ function App() {
   let accountState = useSelector((state) => state.accountReducer);
   let { account } = accountState;
   const [erc721List, setErc721List] = useState([]);
+  
   const [contractList, setContractList] = useState([
     '0x2e03ef77518f0ddeb042ab3de778a64737a983ea', // 새로운 주소
     '0x71e47c247998806ad3a38a99a52bf9b04bc6fa89',

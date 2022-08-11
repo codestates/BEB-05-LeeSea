@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import TokenList from '../components/TokenList';
 
 function Explore({web3, account, contractList, navigate, erc721List, setErc721List}){
-    // const [erc721List, setErc721List] = useState([]);
 
     const addNewErc721Token = async(erc721Addr) => {
         const tokenContract = await new web3.eth.Contract(

@@ -6,7 +6,6 @@ function Erc721({ erc721List, navigate }) {
         <div className="erc721List">
             {erc721List.map((token, idx) => {
                 return (
-                    // <TokenDetail token={token} erc721List={erc721List} key={idx}/>                                        
                     <div className="erc721token" key={idx}>
                         <Link to={`/explore/${idx}`}>
                             Name: <span className="name">{token.name}</span>(

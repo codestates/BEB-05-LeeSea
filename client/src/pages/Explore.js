@@ -2,8 +2,7 @@ import erc721Abi from "../erc721Abi";
 import { useState, useEffect } from 'react';
 import TokenList from '../components/TokenList';
 
-function Explore({web3, account, contractList}){
-    const [erc721List, setErc721List] = useState([]);
+function Explore({web3, account, contractList, navigate, erc721List, setErc721List}){
 
     const addNewErc721Token = async(erc721Addr) => {
         const tokenContract = await new web3.eth.Contract(
@@ -40,7 +39,7 @@ function Explore({web3, account, contractList}){
     }, [contractList])
 
     return (
-        <TokenList erc721List={erc721List} />
+        <TokenList erc721List={erc721List} navigate={navigate}/>
     )
 }  
 export default Explore

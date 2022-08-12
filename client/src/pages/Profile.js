@@ -57,7 +57,7 @@ function Profile({web3, contractList}) {
 
   useEffect(() => {
       loadTokens();
-  }, [contractList])
+  }, [web3, contractList])
 
   return (
     <div className="Profile">

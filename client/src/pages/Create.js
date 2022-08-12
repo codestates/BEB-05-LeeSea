@@ -11,6 +11,7 @@ function Create({ contractAddr, web3 }) {
     let [fileBlob, setFileBlob] = useState("")
     let [name, setName] = useState("")
     let [desc, setDesc] = useState("")
+    let [collection, setCollection] = useState("")
     let [price, setPrice] = useState("")
     let accountState = useSelector((state) => state.accountReducer)
     let { account } = accountState
@@ -34,6 +35,9 @@ function Create({ contractAddr, web3 }) {
     let handleChangeDesc = (value) => {
         setDesc(value)
     }
+    let handleChangeCollection = (value) => {
+        setDesc(value)
+    }
     let handleChangePrice = (value) => {
         setPrice(value)
     }
@@ -49,6 +53,7 @@ function Create({ contractAddr, web3 }) {
                     name: name,
                     description: desc,
                     properties: {
+                        collection: collection,
                         price: price
                     }
                 }
@@ -98,6 +103,8 @@ function Create({ contractAddr, web3 }) {
                 <input type="text" className="form-control" placeholder="Item name" onChange={(e) => handleChangeName(e.target.value)} />
                 <label className="create-item-content form-label">아이템 설명*</label>
                 <input type="text" className="form-control" placeholder="Provide a detailed description of your item." onChange={(e) => handleChangeDesc(e.target.value)}/>
+                <label className="create-item-content form-label">컬렉션 이름*</label>
+                <input type="text" className="form-control" placeholder="Collection Name" onChange={(e) => handleChangeCollection(e.target.value)}/>
                 <label  className="create-item-content form-label">판매 가격*</label>
                 <input type="text" className="form-control" placeholder="name@example.com" onChange={(e) => handleChangePrice(e.target.value)}/>
                 {/* <p className="create-item-content">아이템 이름*</p> */}

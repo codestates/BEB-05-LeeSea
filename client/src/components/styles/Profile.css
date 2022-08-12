@@ -23,15 +23,8 @@
 }
 .profile-item-header {
     font-weight: bold;
-    margin-left: 2rem;
+    margin-left: 1rem;
     text-align: left;
-}
-.profile-item-list {
-    margin: 1rem;
-}
-.profile-item-list-line {
-    padding: 0;
-    margin-bottom: 0;
 }
 
 .logout-btn {

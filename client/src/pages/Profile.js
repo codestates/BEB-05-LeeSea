@@ -6,7 +6,7 @@ import erc721Abi from '../erc721Abi';
 import TokenList from '../components/TokenList';
 
 
-function Profile({web3, contractList}) {
+function Profile({contractList, navigate, web3}) {
   let [myTokenList, setMyTokenList] = useState(['An item', 'A second item', 'A third item', 'Afourth item', 'And a fifth one']);
   const [ownedTokenList, setOwnedTokenList] = useState([]);
 
@@ -63,40 +63,35 @@ function Profile({web3, contractList}) {
 
   return web3? (
     <div className="Profile">
-      <div className="profile-header">
-        <div className="profile-header-1">
-          <h2 className="profile-header-title">Profile</h2>
-          <button type="button" className="logout-btn btn btn-outline-danger" onClick={signout}>로그아웃</button>
-        </div>
-        <div className="profile-header-2">
-          <img className="profile-header-2-image" src="https://static.opensea.io/general/ETH.svg" />
-          { account }
+      {/* 지갑 연결이 안 된 경우 */}
+      <div className={account ? "hidden" : ""}>
+        <div class="alert alert-danger" role="alert">
+          Please connect to your wallet first.
         </div>
       </div>
 
-      {/* divide into 2 columns */}
-      <div className="profile-contents row align-items-start">
-        {/* column 1 */}
-        <div className="profile-item col">
-          <h5 className="profile-item-header">발행 목록</h5>
-          <ul className="profile-item-list list-group list-group-flush">
-            <hr className="profile-item-list-line" />
-            {
-              myTokenList.map((token) => {
-                return <li className="list-group-item" key={token}>{ token }</li>
-              })
-            }
-          </ul>
+      {/* 지갑 연결이 된 경우 */}
+      <div className={!account ? "hidden" : ""}>
+        <div className="profile-header">
+          <div className="profile-header-1">
+            <h2 className="profile-header-title">Profile</h2>
+            <button type="button" className="logout-btn btn btn-outline-danger" onClick={signout}>로그아웃</button>
+          </div>
+          <div className="profile-header-2">
+            <img className="profile-header-2-image" src="https://static.opensea.io/general/ETH.svg" />
+            { account }
+          </div>
         </div>
-        {/* column 2 */}
-        <div className="profile-item col">
-          <h5 className="profile-item-header">구매 목록</h5>
+
+        <div className="profile-contents row align-items-start">
+          <h5 className="profile-item-header">NFT 목록</h5>
           <ul className="profile-item-list list-group list-group-flush">
           <hr className="profile-item-list-line" />
           <TokenList erc721List = {ownedTokenList} />
           </ul>
         </div>
       </div>
+
     </div>
   ): null;
 }

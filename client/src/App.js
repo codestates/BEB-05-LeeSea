@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-import { Route, Routes, useNavigate  } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Web3 from 'web3';
 
 import './App.css';
@@ -39,8 +39,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore erc721List={erc721List} setErc721List={setErc721List} web3={web3} account={account} contractList={contractList} navigate={navigate}/>} />
           <Route path="/explore/:idx" element={<TokenDetail erc721List={erc721List} setErc721List={setErc721List}/>} />
-          <Route path="/create" element={<Create contractAddr={contractAddr} web3={web3} />} />
-          <Route path="/profile" element={<Profile web3={web3} contractList={contractList} />} />
+          <Route path="/create" element={<Create contractAddr={contractAddr} navigate={navigate} web3={web3} />} />
+          <Route path="/profile" element={<Profile contractList={contractList} navigate={navigate} web3={web3} />} />
       </Routes>
     </div>
   );

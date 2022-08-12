@@ -1,19 +1,42 @@
 .create-header {
     margin-left: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     text-align: left;
     width: 100%;
 }
 .create-item {
-    /* width: 100%; */
-}
-
-/* .create-item-content {
     margin-left: 2rem;
+    margin-right: 2rem;
     text-align: left;
-} */
-
+}
+.create-item-content {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.create-btns {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.create-btn {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.btn-create {
+    background-color: #4ABCFC;
+    color: #FFFFFF;
+}
+.btn-cancel {
+    background-color: #E1E1E1;
+    color: #14171A;
+}
+.validation-content {
+    margin-top: 1rem;
+    display: none;
+}
+.validation-text {
+    color:#E45635;
+}
 
 .file-area {
 }
@@ -23,3 +46,8 @@
 .file-area-input {
     margin: .4rem 0;
 }
+.hidden {
+    display: none;
+}
+
+/* loading animation */

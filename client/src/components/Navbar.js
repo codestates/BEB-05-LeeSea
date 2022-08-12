@@ -29,7 +29,7 @@ function Navbar({ }) {
                     <div className="navbar-items">
                         <Link to="/" className="nav-item">Home</Link>
                         <Link to="/explore" className="nav-item">Explore</Link>
-                        <Link to="/" className="nav-item">Create</Link>
+                        <Link to="/create" className="nav-item">Create</Link>
                         <Link to="/profile" className="nav-item">Profile</Link>
                         {
                             account

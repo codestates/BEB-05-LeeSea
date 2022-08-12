@@ -1,0 +1,25 @@
+.create-header {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    text-align: left;
+    width: 100%;
+}
+.create-item {
+    /* width: 100%; */
+}
+
+/* .create-item-content {
+    margin-left: 2rem;
+    text-align: left;
+} */
+
+
+.file-area {
+}
+.file-area-label {
+    display: block;
+}
+.file-area-input {
+    margin: .4rem 0;
+}

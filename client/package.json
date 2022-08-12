@@ -21,6 +21,7 @@
     "web3": "^1.7.5",
     "web3-utils": "^1.7.5"
   },
+  "resolutions": { "react-error-overlay": "6.0.9" },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -54,6 +55,7 @@
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "react-error-overlay": "6.0.9" 
   }
 }

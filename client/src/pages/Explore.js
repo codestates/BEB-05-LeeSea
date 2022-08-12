@@ -35,12 +35,14 @@ function Explore({web3, account, contractList, navigate, erc721List, setErc721Li
     }
 
     useEffect(() => {
-        setErc721List([]);
-        loadTokens();
+        if(web3){
+            setErc721List([]);
+            loadTokens();
+        }
     }, [web3, contractList])
 
-    return (
+    return web3 ? (
         <TokenList erc721List={erc721List} navigate={navigate}/>
-    )
+    ) : null
 }  
 export default Explore

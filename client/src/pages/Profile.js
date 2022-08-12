@@ -56,10 +56,12 @@ function Profile({web3, contractList}) {
   }
 
   useEffect(() => {
+    if(web3){
       loadTokens();
+    }      
   }, [web3, contractList])
 
-  return (
+  return web3? (
     <div className="Profile">
       <div className="profile-header">
         <div className="profile-header-1">
@@ -96,7 +98,7 @@ function Profile({web3, contractList}) {
         </div>
       </div>
     </div>
-  );
+  ): null;
 }
 
 export default Profile

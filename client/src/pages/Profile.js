@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'; // redux
 import '../components/styles/Profile.css';
 import MyToken from '../components/MyToken';
@@ -9,7 +9,6 @@ import { tokenActions } from '../redux/tokenSlice'
 function Profile() {
   const tokenContract = useSelector((state) => state.token.tokenContract);
   const myTokenIds = useSelector((state) => state.token.myTokenIds);
-  const [myTokenList, setMyTokenList] = useState([]);
   const account = useSelector((state) => state.account.address);
   const dispatch = useDispatch()
 

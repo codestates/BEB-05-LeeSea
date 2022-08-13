@@ -1,6 +1,4 @@
-import { useEffect, useState} from 'react';
 import { Route, Routes } from "react-router-dom";
-import Web3 from 'web3';
 
 import './App.css';
 import Navbar from './components/Navbar';

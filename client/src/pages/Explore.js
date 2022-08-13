@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Erc721 from '../components/Erc721';
 
 
-function Explore({web3, contractAddr, erc721List, setErc721List}){
+function Explore(){
     const totalSupply = useSelector((state) => state.token.totalSupply);
     const dispatch = useDispatch()
     useEffect(() => {

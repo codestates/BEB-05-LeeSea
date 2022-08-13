@@ -91,7 +91,7 @@ const fetchToken = createAsyncThunk(
         const tokenMetadata = response.data;
         tokenMetadata.image = tokenMetadata.image.replace("ipfs://", "https://ipfs.io/ipfs/");
         return {
-            ...response.data,
+            ...tokenMetadata,
             tokenId: tokenId
         };
     }

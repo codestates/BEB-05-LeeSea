@@ -13,7 +13,7 @@ function Explore(){
     return(
         <div className = "tokenlist">
             <div className="erc721List">
-                {[...Array(totalSupply)].map((e, idx) => {
+                {[...Array(totalSupply)].map((_, idx) => {
                     const tokenId = idx + 1;
                     return(
                         <Erc721 tokenId={tokenId} key={tokenId}/>

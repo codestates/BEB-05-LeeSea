@@ -10,21 +10,17 @@ function Erc721({ tokenId }) {
     useEffect(() => {
         dispatch(tokenActions.fetchToken(tokenId));
     }, [])
-    return (
+    return tokenMetadata ? (
         <div className="erc721token">
             <Link to={`/explore/${tokenId}`}>
-                {tokenMetadata ?
-                    <>
-                        <img
-                            src={tokenMetadata.image.replace("ipfs://", "https://ipfs.io/ipfs/")}
-                            width={300}/>
-                        <div className="name">Name: {tokenMetadata.name}</div>
-                        <div className="price">Price: {tokenMetadata.price} ETH</div>
-                    </>: null                
-                }
+                <img
+                    src={tokenMetadata.image}
+                    width={300}/>
+                <div className="name">Name: {tokenMetadata.name}</div>
+                <div className="price">Price: {tokenMetadata.price} ETH</div>
             </Link>
         </div>
-    );
+    ): null;
 }
 
 export default Erc721;

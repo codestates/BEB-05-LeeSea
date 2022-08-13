@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 
 function Erc721({ erc721, idx }) {
-    let [tokenMetadata, setTokenMetadata] = useState();
+    const [tokenMetadata, setTokenMetadata] = useState();
     const getTokenMetadata = () => {
         axios.get(erc721.tokenURI)
             .then(res => setTokenMetadata(res.data))

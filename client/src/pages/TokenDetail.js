@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 
 function TokenDetail({ erc721List }) {
 
-    let { idx } = useParams();
+    const { idx } = useParams();
     console.log(erc721List)
 
     return (        

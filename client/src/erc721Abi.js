@@ -1,4 +1,4 @@
-let erc721Abi = [
+const erc721Abi = [
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",

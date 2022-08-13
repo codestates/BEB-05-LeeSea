@@ -8,13 +8,13 @@ import { Home, Profile, Create, Explore, TokenDetail } from './pages';
 import { CONTRACT_ADDR as contractAddr } from './global_variables';
 
 function App() {
-  let [web3, setWeb3] = useState();
+  const [web3, setWeb3] = useState();
   const [erc721List, setErc721List] = useState([]);
 
   useEffect(() => {
     if (typeof window.ethereum !== "undefined") {
       try {
-        let web = new Web3(window.ethereum)
+        const web = new Web3(window.ethereum)
         setWeb3(web)
       }
       catch (err) { console.log(err) }

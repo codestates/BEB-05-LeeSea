@@ -18,8 +18,8 @@ function Explore({web3, contractAddr, erc721List, setErc721List}){
             arr.push(i);
         }
 
-        for (let tokenId of arr) {
-            let tokenURI = await tokenContract.methods
+        for (const tokenId of arr) {
+            const tokenURI = await tokenContract.methods
                 .tokenURI(tokenId)
                 .call();
             setErc721List((prevState)=>{

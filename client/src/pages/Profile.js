@@ -7,11 +7,11 @@ import axios from 'axios';
 import { accountActions } from '../redux/accountSlice';
 
 function Profile({contractAddr, web3}) {
-  let [myTokenList, setMyTokenList] = useState([]);
+  const [myTokenList, setMyTokenList] = useState([]);
   const account = useSelector((state) => state.account.address);
   const dispatch = useDispatch()
 
-  let signout = () => {
+  const signout = () => {
       dispatch(accountActions.setAccount(''))
   }
 
@@ -29,18 +29,18 @@ function Profile({contractAddr, web3}) {
         arr.push(i);
     }
 
-    for(let tokenId of arr){
-        let tokenOwner = await tokenContract.methods
+    for(const tokenId of arr){
+      const tokenOwner = await tokenContract.methods
             .ownerOf(tokenId)
             .call();
         if (String(tokenOwner).toLowerCase()===account){
-            let tokenURI = await tokenContract.methods
+          const tokenURI = await tokenContract.methods
                 .tokenURI(tokenId)
                 .call();
             await axios.get(tokenURI)
               .then((res) => {
-                let url = res.data.image.slice(7)
-                let data = {
+                const url = res.data.image.slice(7)
+                const data = {
                   name: res.data.name,
                   desc: res.data.description,
                   collection: res.data.properties.collection || 'pepe',

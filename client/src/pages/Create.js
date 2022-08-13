@@ -7,33 +7,33 @@ import { NFT_STORAGE_API_KEY as API_KEY } from '../global_variables'
 import Loading from '../components/Loading';
 
 function Create({ contractAddr, web3 }) {
-    let [fileBlob, setFileBlob] = useState("")
-    let [name, setName] = useState("")
-    let [desc, setDesc] = useState("")
-    let [collection, setCollection] = useState("")
-    let [price, setPrice] = useState("")
+    const [fileBlob, setFileBlob] = useState("")
+    const [name, setName] = useState("")
+    const [desc, setDesc] = useState("")
+    const [collection, setCollection] = useState("")
+    const [price, setPrice] = useState("")
     const account = useSelector((state) => state.account.address);
-    let [isNotValidated, setIsNotValidated] = useState(false)
-    let [isLoading, setIsLoading] = useState(false)
+    const [isNotValidated, setIsNotValidated] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
-    let handleChangeImgSrc = (target) => {
+    const handleChangeImgSrc = (target) => {
         console.log(target.files[0])
-        let fileBlob = target.files[0]
+        const fileBlob = target.files[0]
         setFileBlob(fileBlob)
     }
-    let handleChangeName = (value) => {
+    const handleChangeName = (value) => {
         setName(value)
     }
-    let handleChangeDesc = (value) => {
+    const handleChangeDesc = (value) => {
         setDesc(value)
     }
-    let handleChangeCollection = (value) => {
+    const handleChangeCollection = (value) => {
         setCollection(value)
     }
-    let handleChangePrice = (value) => {
+    const handleChangePrice = (value) => {
         setPrice(value)
     }
-    let createNft = async () => {
+    const createNft = async () => {
         if (fileBlob === "") setIsNotValidated(1)
         else if (name === "") setIsNotValidated(2)
         else if (desc === "") setIsNotValidated(3)
@@ -44,8 +44,8 @@ function Create({ contractAddr, web3 }) {
             setIsLoading(1)
             setIsNotValidated(false)
             try {
-                let image = fileBlob
-                let data = {
+                const image = fileBlob
+                const data = {
                     image,
                     name: name,
                     description: desc,
@@ -55,17 +55,17 @@ function Create({ contractAddr, web3 }) {
                     }
                 }
 
-                let client = new NFTStorage({ token: API_KEY })
-                let metadata = await client.store(data)
+                const client = new NFTStorage({ token: API_KEY })
+                const metadata = await client.store(data)
                 setIsLoading(2)
 
-                let url = metadata.url.slice(7)
-                let tokenURI = `https://ipfs.io/ipfs/${url}`
+                const url = metadata.url.slice(7)
+                const tokenURI = `https://ipfs.io/ipfs/${url}`
                 console.log(tokenURI)
 
-                let tokenContract = await new web3.eth.Contract(erc721Abi, contractAddr)
+                const tokenContract = await new web3.eth.Contract(erc721Abi, contractAddr)
                 setIsLoading(3)
-                let nft = await tokenContract.methods.mintNFT(account, tokenURI).send({
+                const nft = await tokenContract.methods.mintNFT(account, tokenURI).send({
                     from: account,
                     gas: 1500000,
                     gasPrice: '3000000'

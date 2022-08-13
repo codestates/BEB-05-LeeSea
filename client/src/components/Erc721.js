@@ -1,9 +1,8 @@
-import { Navigate, useParams, Link } from "react-router-dom";
-import { TokenDetail } from "../pages";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-function Erc721({ erc721, navigate, idx }) {
+function Erc721({ erc721, idx }) {
     let [tokenMetadata, setTokenMetadata] = useState();
     const getTokenMetadata = () => {
         axios.get(erc721.tokenURI)
@@ -35,4 +34,3 @@ function Erc721({ erc721, navigate, idx }) {
 }
 
 export default Erc721;
-// onClick={() => { navigate(`/explore/${token.tokenId}`) }} 

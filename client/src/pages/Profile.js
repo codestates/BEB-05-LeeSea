@@ -6,7 +6,7 @@ import erc721Abi from '../erc721Abi';
 import MyTokenList from '../components/MyTokenList';
 import axios from 'axios'
 
-function Profile({contractList, navigate, web3}) {
+function Profile({contractAddr, web3}) {
   let [myTokenList, setMyTokenList] = useState([]);
 
   let accountState = useSelector((state) => state.accountReducer);
@@ -66,16 +66,14 @@ function Profile({contractList, navigate, web3}) {
  
   
   const loadTokens = async () => {
-    for (let addr of contractList) {
-        await getOwnedToken(addr)
-      }
+    await getOwnedToken(contractAddr)
   }
 
   useEffect(() => {
     if(web3){
       loadTokens();
     }      
-  }, [web3, contractList])
+  }, [web3, contractAddr])
 
   return web3? (
     <div className="Profile">

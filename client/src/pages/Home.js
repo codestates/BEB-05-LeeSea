@@ -15,8 +15,8 @@ const Home = () => {
 					</div>
 					{/* button from https://getbootstrap.com/docs/4.3/components/buttons/ */}
 					<div style={{display: "flex", marginTop: "10%", justifyContent: "center"}}>
-						<Link to="/explore" style={{marginRight: "5%"}}><button type="button" class="btn btn-primary btn-lg" style={{width: "100%", margin: "auto"}}>Explore</button></Link>
-						<Link to="/create"><button type="button" class="btn btn-outline-primary btn-lg" style={{width: "100%", margin: "auto"}}>Create</button></Link>
+						<Link to="/explore" style={{marginRight: "5%"}}><button type="button" className="btn btn-primary btn-lg" style={{width: "100%", margin: "auto"}}>Explore</button></Link>
+						<Link to="/create"><button type="button" className="btn btn-outline-primary btn-lg" style={{width: "100%", margin: "auto"}}>Create</button></Link>
 					</div>
 			</div>
 			<div className="div-right" style={{float: 'right', width: '55%', padding: '3% 3% 3% 3%', margin: 'auto'}}>

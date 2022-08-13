@@ -1,4 +1,3 @@
-import Erc721 from "../components/Erc721";
 import { Link, useParams } from "react-router-dom";
 
 function TokenDetail({ erc721List }) {

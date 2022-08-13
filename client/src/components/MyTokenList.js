@@ -1,5 +1,3 @@
-import Erc721 from "./Erc721";
-
 function TokenList({ token }){
     return(
         <div className = "MyTokenList">

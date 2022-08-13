@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import '../components/styles/Create.css'
 import erc721Abi from '../erc721Abi'
@@ -6,7 +6,7 @@ import { NFTStorage } from "nft.storage/dist/bundle.esm.min.js";
 import { NFT_STORAGE_API_KEY as API_KEY } from '../global_variables'
 import Loading from '../components/Loading';
 
-function Create({ contractAddr, navigate, web3 }) {
+function Create({ contractAddr, web3 }) {
     let [fileBlob, setFileBlob] = useState("")
     let [name, setName] = useState("")
     let [desc, setDesc] = useState("")

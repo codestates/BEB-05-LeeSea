@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { setAccount } from "../redux/actions";  // redux
 import { useSelector, useDispatch } from 'react-redux'; // redux
-import Web3 from 'web3'
 import './styles/Navbar.css';
 
 function Navbar({ }) {
@@ -33,7 +32,6 @@ function Navbar({ }) {
                         <Link to="/profile" className="nav-item">Profile</Link>
                         {
                             account
-                            // ? <button type="button" className="connect-wallet-btn btn btn-primary" disabled></button>
                             ? <img className="connect-wallet-img" src="https://seeklogo.com/images/M/metamask-logo-09EDE53DBD-seeklogo.com.png" />
                             : <button type="button" className="connect-wallet-btn btn btn-primary" onClick={connectWallet}>Wallet</button>
                         }

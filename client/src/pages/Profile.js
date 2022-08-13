@@ -1,27 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'; // redux
 import '../components/styles/Profile.css';
-import erc721Abi from '../erc721Abi';
 import MyTokenList from '../components/MyTokenList';
 import axios from 'axios';
 import { accountActions } from '../redux/accountSlice';
+import { CONTRACT_ADDR as contractAddr } from '../global_variables';
+import { tokenActions } from '../redux/tokenSlice'
 
-function Profile({contractAddr, web3}) {
+
+function Profile() {
+  const tokenContract = useSelector((state) => state.token.tokenContract);
   const [myTokenList, setMyTokenList] = useState([]);
   const account = useSelector((state) => state.account.address);
   const dispatch = useDispatch()
+
+  useEffect(() => {
+      dispatch(tokenActions.setTokenContract());
+      loadTokens();
+  }, [])
 
   const signout = () => {
       dispatch(accountActions.setAccount(''))
   }
 
   const getOwnedToken = async(erc721Addr) => {
-    const tokenContract = await new web3.eth.Contract(
-      erc721Abi,
-      erc721Addr
-    );
-    const name = await tokenContract.methods.name().call();
-    const symbol = await tokenContract.methods.symbol().call();
     const totalSupply = await tokenContract.methods.totalSupply().call();
     
     let arr = [];
@@ -66,13 +68,7 @@ function Profile({contractAddr, web3}) {
     await getOwnedToken(contractAddr)
   }
 
-  useEffect(() => {
-    if(web3){
-      loadTokens();
-    }      
-  }, [web3, contractAddr])
-
-  return web3? (
+  return tokenContract? (
     <div className="Profile">
       {/* 지갑 연결이 안 된 경우 */}
       <div className={account ? "hidden" : ""}>

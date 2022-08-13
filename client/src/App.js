@@ -9,7 +9,6 @@ import { CONTRACT_ADDR as contractAddr } from './global_variables';
 
 function App() {
   const [web3, setWeb3] = useState();
-  const [erc721List, setErc721List] = useState([]);
 
   useEffect(() => {
     if (typeof window.ethereum !== "undefined") {
@@ -26,9 +25,9 @@ function App() {
       <Navbar />
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore erc721List={erc721List} setErc721List={setErc721List} web3={web3} contractAddr={contractAddr} />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/explore/:tokenId" element={<TokenDetail />} />
-          <Route path="/create" element={<Create contractAddr={contractAddr} web3={web3} />} />
+          <Route path="/create" element={<Create />} />
           <Route path="/profile" element={<Profile contractAddr={contractAddr} web3={web3} />} />
       </Routes>
     </div>

@@ -1,12 +1,14 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import '../components/styles/Create.css'
-import erc721Abi from '../erc721Abi'
 import { NFTStorage } from "nft.storage/dist/bundle.esm.min.js";
 import { NFT_STORAGE_API_KEY as API_KEY } from '../global_variables'
 import Loading from '../components/Loading';
+import { tokenActions } from '../redux/tokenSlice'
 
-function Create({ contractAddr, web3 }) {
+
+function Create() {
+    const tokenContract = useSelector((state) => state.token.tokenContract);
     const [fileBlob, setFileBlob] = useState("")
     const [name, setName] = useState("")
     const [desc, setDesc] = useState("")
@@ -15,6 +17,11 @@ function Create({ contractAddr, web3 }) {
     const account = useSelector((state) => state.account.address);
     const [isNotValidated, setIsNotValidated] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(tokenActions.setTokenContract());
+    }, [])
 
     const handleChangeImgSrc = (target) => {
         console.log(target.files[0])
@@ -63,7 +70,6 @@ function Create({ contractAddr, web3 }) {
                 const tokenURI = `https://ipfs.io/ipfs/${url}`
                 console.log(tokenURI)
 
-                const tokenContract = await new web3.eth.Contract(erc721Abi, contractAddr)
                 setIsLoading(3)
                 const nft = await tokenContract.methods.mintNFT(account, tokenURI).send({
                     from: account,
@@ -82,7 +88,7 @@ function Create({ contractAddr, web3 }) {
         setIsLoading(false)
     }
 
-    return (
+    return tokenContract ? (
       <div className="Create">
         {/* 지갑 연결이 안 된 경우 */}
         <div className={account ? "hidden" : ""}>
@@ -148,7 +154,7 @@ function Create({ contractAddr, web3 }) {
             </div>
         </div>
       </div>
-    );
+    ): null;
   }
   
   export default Create

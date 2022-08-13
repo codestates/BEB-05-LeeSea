@@ -48,6 +48,22 @@ const setTotalSupply = createAsyncThunk(
     }
 );
 
+const setTokenContract = createAsyncThunk(
+    `${name}/SET_TOKEN_CONTRACT`,
+    async (_, thunkAPI) => {
+        console.log("HIHIHIH");
+        if (!thunkAPI.getState().tokenContract) {
+            const web3 = await initializeWeb3(thunkAPI);
+            const tokenContract = await new web3.eth.Contract(
+                erc721Abi,
+                contractAddr
+            );
+            return tokenContract;
+        }
+        return thunkAPI.getState().tokenContract
+    }
+);
+
 const fetchToken = createAsyncThunk(
     `${name}/FETCH`,
     async (tokenId, thunkAPI) => {
@@ -101,8 +117,11 @@ export const tokenSlice = createSlice({
         },
         [setTotalSupply.fulfilled.type]: (state, action) => {
             state.totalSupply = action.payload;
+        },
+        [setTokenContract.fulfilled.type]: (state, action) => {
+            state.tokenContract = state.tokenContract || action.payload;
         }
     }
 });
 
-export const tokenActions = {...tokenSlice.actions, fetchToken, setTotalSupply};
+export const tokenActions = {...tokenSlice.actions, fetchToken, setTotalSupply, setTokenContract};

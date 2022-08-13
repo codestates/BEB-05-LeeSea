@@ -28,7 +28,7 @@ function Navbar({ }) {
                         <Link to="/create" className="nav-item">Create</Link>
                         <Link to="/profile" className="nav-item">Profile</Link>
                         {
-                            account && account.address
+                            account
                             ? <img className="connect-wallet-img" src="https://seeklogo.com/images/M/metamask-logo-09EDE53DBD-seeklogo.com.png" />
                             : <button type="button" className="connect-wallet-btn btn btn-primary" onClick={connectWallet}>Wallet</button>
                         }

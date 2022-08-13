@@ -4,7 +4,6 @@ import '../components/styles/Profile.css';
 import MyTokenList from '../components/MyTokenList';
 import axios from 'axios';
 import { accountActions } from '../redux/accountSlice';
-import { CONTRACT_ADDR as contractAddr } from '../global_variables';
 import { tokenActions } from '../redux/tokenSlice'
 
 
@@ -16,14 +15,16 @@ function Profile() {
 
   useEffect(() => {
       dispatch(tokenActions.setTokenContract());
-      loadTokens();
-  }, [])
+      if (tokenContract) {
+        loadTokens();
+      }
+  }, [tokenContract])
 
   const signout = () => {
       dispatch(accountActions.setAccount(''))
   }
 
-  const getOwnedToken = async(erc721Addr) => {
+  const getOwnedToken = async() => {
     const totalSupply = await tokenContract.methods.totalSupply().call();
     
     let arr = [];
@@ -65,7 +66,7 @@ function Profile() {
  
   
   const loadTokens = async () => {
-    await getOwnedToken(contractAddr)
+    await getOwnedToken()
   }
 
   return tokenContract? (

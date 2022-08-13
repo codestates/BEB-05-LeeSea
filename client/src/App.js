@@ -28,7 +28,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/explore/:tokenId" element={<TokenDetail />} />
           <Route path="/create" element={<Create />} />
-          <Route path="/profile" element={<Profile contractAddr={contractAddr} web3={web3} />} />
+          <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );

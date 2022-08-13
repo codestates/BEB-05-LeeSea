@@ -1,18 +1,15 @@
 import { Link } from "react-router-dom";
-import { setAccount } from "../redux/actions";  // redux
 import { useSelector, useDispatch } from 'react-redux'; // redux
 import './styles/Navbar.css';
+import { accountActions } from "../redux/accountSlice";
 
 function Navbar({ }) {
-    const accountState = useSelector((state) => state.accountReducer)
-    const { account } = accountState
+    const account = useSelector((state) => state.account.address);
     const dispatch = useDispatch()
 
-    let connectWallet = async () => {
-        let accounts = await window.ethereum.request({
-            method: "eth_requestAccounts",
-        })
-        dispatch(setAccount(accounts[0]))
+    const connectWallet = async () => {
+        dispatch(accountActions.fetchAccount());
+        console.log(account);
     }
 
     return (
@@ -31,11 +28,10 @@ function Navbar({ }) {
                         <Link to="/create" className="nav-item">Create</Link>
                         <Link to="/profile" className="nav-item">Profile</Link>
                         {
-                            account
+                            account && account.address
                             ? <img className="connect-wallet-img" src="https://seeklogo.com/images/M/metamask-logo-09EDE53DBD-seeklogo.com.png" />
                             : <button type="button" className="connect-wallet-btn btn btn-primary" onClick={connectWallet}>Wallet</button>
                         }
-                        
                     </div>
                 </div>
             </nav>

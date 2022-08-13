@@ -2,7 +2,7 @@ import erc721Abi from "../erc721Abi";
 import { useEffect } from 'react';
 import TokenList from '../components/TokenList';
 
-function Explore({web3, account, contractAddr, erc721List, setErc721List}){
+function Explore({web3, contractAddr, erc721List, setErc721List}){
 
     const addNewErc721Token = async(erc721Addr) => {
         const tokenContract = await new web3.eth.Contract(
@@ -33,7 +33,7 @@ function Explore({web3, account, contractAddr, erc721List, setErc721List}){
     }
 
     useEffect(() => {
-        if(web3){
+        if (web3) {
             setErc721List([]);
             loadTokens();
         }

@@ -1,21 +1,18 @@
 import { useEffect, useState } from 'react';
-import { setAccount } from "../redux/actions";  // redux
 import { useSelector, useDispatch } from 'react-redux'; // redux
 import '../components/styles/Profile.css';
 import erc721Abi from '../erc721Abi';
 import MyTokenList from '../components/MyTokenList';
-import axios from 'axios'
+import axios from 'axios';
+import { accountActions } from '../redux/accountSlice';
 
 function Profile({contractAddr, web3}) {
   let [myTokenList, setMyTokenList] = useState([]);
-
-  let accountState = useSelector((state) => state.accountReducer);
-  let { account } = accountState;
-
+  const account = useSelector((state) => state.account.address);
   const dispatch = useDispatch()
 
   let signout = () => {
-      dispatch(setAccount(''))
+      dispatch(accountActions.setAccount(''))
   }
 
   const getOwnedToken = async(erc721Addr) => {

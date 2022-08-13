@@ -12,8 +12,7 @@ function Create({ contractAddr, web3 }) {
     let [desc, setDesc] = useState("")
     let [collection, setCollection] = useState("")
     let [price, setPrice] = useState("")
-    let accountState = useSelector((state) => state.accountReducer)
-    let { account } = accountState
+    const account = useSelector((state) => state.account.address);
     let [isNotValidated, setIsNotValidated] = useState(false)
     let [isLoading, setIsLoading] = useState(false)
 

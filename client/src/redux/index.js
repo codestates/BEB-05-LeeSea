@@ -1,21 +1,31 @@
-// redux의 rootReducer를 정의하는 파일
-// 현재는 rootReducer를 redux-persist로 사용하고 있음
+import { logger } from 'redux-logger';
+import { accountSlice } from './accountSlice';
+import { configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+    persistStore,
+    persistReducer,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk'
 
-import { combineReducers } from 'redux';
-import { accountReducer, tokenMetadataReducer } from './reducers';
-import { persistReducer } from 'redux-persist';	// redux-persist
-import storage from 'redux-persist/lib/storage';	// redux-persist
 
 const persistConfig = {
-  key: 'root',
-  storage,
-}	// redux-persist
+    key: 'root',
+    version: 0,
+    storage,
+};
 
 const rootReducer = combineReducers({
-  accountReducer,
-  tokenMetadataReducer
+    account: accountSlice.reducer
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);	// redux-persist
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default persistedReducer;  // redux-persist
+const store = configureStore({
+    reducer: persistedReducer,
+    middleware: [thunk, logger],
+    devTools: true,
+});
+
+export const persistor = persistStore(store);
+export default store;

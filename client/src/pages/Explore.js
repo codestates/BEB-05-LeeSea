@@ -1,46 +1,26 @@
-import erc721Abi from "../erc721Abi";
 import { useEffect } from 'react';
-import TokenList from '../components/TokenList';
+import { tokenActions } from '../redux/tokenSlice'
+import { useSelector, useDispatch } from 'react-redux';
+import Erc721 from '../components/Erc721';
+
 
 function Explore({web3, contractAddr, erc721List, setErc721List}){
-
-    const addNewErc721Token = async(erc721Addr) => {
-        const tokenContract = await new web3.eth.Contract(
-            erc721Abi,
-            erc721Addr
-        );
-        const name = await tokenContract.methods.name().call();
-        const symbol = await tokenContract.methods.symbol().call();
-        const totalSupply = await tokenContract.methods.totalSupply().call();
-        
-        let arr = [];
-        for (let i = 1; i<=totalSupply; i++) {
-            arr.push(i);
-        }
-
-        for (const tokenId of arr) {
-            const tokenURI = await tokenContract.methods
-                .tokenURI(tokenId)
-                .call();
-            setErc721List((prevState)=>{
-                return [...prevState, { name, symbol, tokenId, tokenURI}];
-            })
-        }
-    }
-
-    const loadTokens = async () => {
-        await addNewErc721Token(contractAddr)
-    }
-
+    const totalSupply = useSelector((state) => state.token.totalSupply);
+    const dispatch = useDispatch()
     useEffect(() => {
-        if (web3) {
-            setErc721List([]);
-            loadTokens();
-        }
-    }, [web3, contractAddr])
-
-    return web3 ? (
-        <TokenList erc721List={erc721List} />
-    ) : null
+        dispatch(tokenActions.setTotalSupply());
+    }, [])
+    return(
+        <div className = "tokenlist">
+            <div className="erc721List">
+                {[...Array(totalSupply)].map((e, idx) => {
+                    const tokenId = idx + 1;
+                    return(
+                        <Erc721 tokenId={tokenId} key={tokenId}/>
+                    )
+                })}
+            </div>
+        </div>
+    );
 }  
-export default Explore
+export default Explore;

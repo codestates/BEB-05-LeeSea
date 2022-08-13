@@ -1,6 +1,7 @@
 import { logger } from 'redux-logger';
 import { accountSlice } from './accountSlice';
-import { configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { tokenSlice } from './tokenSlice';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import {
     persistStore,
     persistReducer,
@@ -12,11 +13,13 @@ import thunk from 'redux-thunk'
 const persistConfig = {
     key: 'root',
     version: 0,
+    whitelist: ['account'],
     storage,
 };
 
 const rootReducer = combineReducers({
-    account: accountSlice.reducer
+    account: accountSlice.reducer,
+    token: tokenSlice.reducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

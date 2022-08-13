@@ -27,7 +27,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore erc721List={erc721List} setErc721List={setErc721List} web3={web3} contractAddr={contractAddr} />} />
-          <Route path="/explore/:idx" element={<TokenDetail erc721List={erc721List} setErc721List={setErc721List}/>} />
+          <Route path="/explore/:tokenId" element={<TokenDetail />} />
           <Route path="/create" element={<Create contractAddr={contractAddr} web3={web3} />} />
           <Route path="/profile" element={<Profile contractAddr={contractAddr} web3={web3} />} />
       </Routes>

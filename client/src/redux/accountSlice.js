@@ -9,15 +9,11 @@ const initialState = {
 
 const fetchAccount = createAsyncThunk(
     `${name}/FETCH`,
-    async (thunkAPI) => {
-        try {
-            const accounts = await window.ethereum.request({
-                method: "eth_requestAccounts",
-            });
-            return accounts[0];
-        } catch (e) {
-            return thunkAPI.rejectWithValue(await e);
-        }
+    async () => {
+        const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts",
+        });
+        return accounts[0];
     }
 );
 

@@ -13,6 +13,7 @@ const initialState = {
     totalSupply: 0,
     contractName: null,
     tokenSymbol: null,
+    myTokenIds: [],
 };
 
 const initializeWeb3 = async (thunkAPI) => {
@@ -51,7 +52,6 @@ const setTotalSupply = createAsyncThunk(
 const setTokenContract = createAsyncThunk(
     `${name}/SET_TOKEN_CONTRACT`,
     async (_, thunkAPI) => {
-        console.log("HIHIHIH");
         if (!thunkAPI.getState().tokenContract) {
             const web3 = await initializeWeb3(thunkAPI);
             const tokenContract = await new web3.eth.Contract(
@@ -61,6 +61,22 @@ const setTokenContract = createAsyncThunk(
             return tokenContract;
         }
         return thunkAPI.getState().tokenContract
+    }
+);
+
+const setMyTokenIds = createAsyncThunk(
+    `${name}/SET_MY_TOKEN_IDS`,
+    async (myAddress, thunkAPI) => {
+        const myTokenIds = [];
+        const tokenContract = await initializeTokenContract(thunkAPI);
+        const totalSupply = await tokenContract.methods.totalSupply().call();
+        for (let tokenId = 1; tokenId<=totalSupply; tokenId++){
+            const tokenOwner = await tokenContract.methods.ownerOf(tokenId).call();
+            if (String(tokenOwner).toLowerCase()===myAddress) {
+                myTokenIds.push(tokenId);
+            }
+        }
+        return myTokenIds;
     }
 );
 
@@ -120,8 +136,11 @@ export const tokenSlice = createSlice({
         },
         [setTokenContract.fulfilled.type]: (state, action) => {
             state.tokenContract = state.tokenContract || action.payload;
+        },
+        [setMyTokenIds.fulfilled.type]: (state, action) => {
+            state.myTokenIds = action.payload;
         }
     }
 });
 
-export const tokenActions = {...tokenSlice.actions, fetchToken, setTotalSupply, setTokenContract};
+export const tokenActions = {...tokenSlice.actions, fetchToken, setTotalSupply, setTokenContract, setMyTokenIds};

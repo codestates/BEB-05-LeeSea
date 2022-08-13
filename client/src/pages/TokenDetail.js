@@ -9,7 +9,6 @@ function TokenDetail() {
     const tokenMetadata = useSelector((state) => state.token.tokens[tokenId]);
     const dispatch = useDispatch()
     useEffect(() => {
-        console.log(tokenId);
         dispatch(tokenActions.fetchToken(tokenId));
     }, [])
 

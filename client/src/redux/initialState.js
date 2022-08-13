@@ -2,4 +2,5 @@
 export const initialState =
 {
   account: '',
+  tokenMetadata: ''
 };

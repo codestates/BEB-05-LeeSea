@@ -9,7 +9,6 @@ function Navbar({ }) {
 
     const connectWallet = async () => {
         dispatch(accountActions.fetchAccount());
-        console.log(account);
     }
 
     return (

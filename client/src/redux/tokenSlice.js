@@ -83,8 +83,6 @@ const setMyTokenIds = createAsyncThunk(
 const fetchToken = createAsyncThunk(
     `${name}/FETCH`,
     async (tokenId, thunkAPI) => {
-        console.log(tokenId);
-        console.log(thunkAPI);
         const tokenContract = await initializeTokenContract(thunkAPI);
         const tokenURI = await tokenContract.methods
             .tokenURI(tokenId)

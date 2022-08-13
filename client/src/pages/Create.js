@@ -68,7 +68,6 @@ function Create() {
 
                 const url = metadata.url.slice(7)
                 const tokenURI = `https://ipfs.io/ipfs/${url}`
-                console.log(tokenURI)
 
                 setIsLoading(3)
                 const nft = await tokenContract.methods.mintNFT(account, tokenURI).send({

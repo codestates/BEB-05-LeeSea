@@ -40,6 +40,31 @@ const initializeTokenContract = async (thunkAPI) => {
     return thunkAPI.getState().tokenContract
 };
 
+const fetchTokenWithContractAndTokenId = async (tokenContract, tokenId) => {
+    const tokenURI = await tokenContract.methods
+        .tokenURI(tokenId)
+        .call();
+    const response = await axios.get(tokenURI);
+    const tokenMetadata = response.data;
+    tokenMetadata.image = tokenMetadata.image.replace("ipfs://", "https://ipfs.io/ipfs/");
+    const tokenOwner = await tokenContract.methods.ownerOf(tokenId).call();
+    return {
+        ...tokenMetadata,
+        tokenId: tokenId,
+        owner: tokenOwner
+    };
+}
+
+const updateTokenOwner = createAsyncThunk(
+    `${name}/UPDATE_TOKEN_OWNER`,
+    async ({tokenId, myAddress}, thunkAPI) => {
+        const tokenContract = await initializeTokenContract(thunkAPI);
+        const tokenOwner = await tokenContract.methods.ownerOf(tokenId).call();
+        await tokenContract.methods.safeTransferFrom(tokenOwner, myAddress, tokenId).call();
+        return fetchTokenWithContractAndTokenId(tokenContract, tokenId);
+    }
+);
+
 const setTotalSupply = createAsyncThunk(
     `${name}/SET_TOTAL_SUPPLY`,
     async (_, thunkAPI) => {
@@ -84,16 +109,7 @@ const fetchToken = createAsyncThunk(
     `${name}/FETCH`,
     async (tokenId, thunkAPI) => {
         const tokenContract = await initializeTokenContract(thunkAPI);
-        const tokenURI = await tokenContract.methods
-            .tokenURI(tokenId)
-            .call();
-        const response = await axios.get(tokenURI);
-        const tokenMetadata = response.data;
-        tokenMetadata.image = tokenMetadata.image.replace("ipfs://", "https://ipfs.io/ipfs/");
-        return {
-            ...tokenMetadata,
-            tokenId: tokenId
-        };
+        return fetchTokenWithContractAndTokenId(tokenContract, tokenId);
     }
 );
 
@@ -125,7 +141,8 @@ export const tokenSlice = createSlice({
                     description: action.payload.description,
                     collection: action.payload.properties.collection || 'pepe',
                     price: action.payload.properties.price,
-                    image: action.payload.image
+                    image: action.payload.image,
+                    owner: action.payload.owner
                 }
             }
         },
@@ -137,8 +154,28 @@ export const tokenSlice = createSlice({
         },
         [setMyTokenIds.fulfilled.type]: (state, action) => {
             state.myTokenIds = action.payload;
+        },
+        [updateTokenOwner.fulfilled.type]: (state, action) => {
+            state.tokens = {
+                ...state.tokens,
+                [action.payload.tokenId]: {
+                    name: action.payload.name,
+                    description: action.payload.description,
+                    collection: action.payload.properties.collection || 'pepe',
+                    price: action.payload.properties.price,
+                    image: action.payload.image,
+                    owner: action.payload.owner
+                }
+            }
         }
     }
 });
 
-export const tokenActions = {...tokenSlice.actions, fetchToken, setTotalSupply, setTokenContract, setMyTokenIds};
+export const tokenActions = {
+    ...tokenSlice.actions,
+    fetchToken,
+    setTotalSupply,
+    setTokenContract,
+    setMyTokenIds,
+    updateTokenOwner
+};

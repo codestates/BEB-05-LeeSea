@@ -7,10 +7,18 @@ import { useSelector, useDispatch } from 'react-redux';
 function TokenDetail() {
     const { tokenId } = useParams();
     const tokenMetadata = useSelector((state) => state.token.tokens[tokenId]);
-    const dispatch = useDispatch()
+    const account = useSelector((state) => state.account.address);
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(tokenActions.fetchToken(tokenId));
-    }, [])
+    }, []);
+
+    const buyNFT = () => {
+        if (account) {
+            console.log(account);
+            dispatch(tokenActions.updateTokenOwner({tokenId, myAddress: account}));
+        }
+    };
 
     return tokenMetadata ? (        
         <div>
@@ -21,7 +29,7 @@ function TokenDetail() {
                     <h4 className="tokenDesc">Description</h4>
                     <p className="tokenDescBody">{tokenMetadata.description}</p>
                 </div>
-                <button className="buyNFT">구매하기</button>
+                <button className="buyNFT" onClick={buyNFT}>구매하기</button>
                 <Link to="/explore"><button className="goToList">목록으로</button></Link>
             </div>
         </div>

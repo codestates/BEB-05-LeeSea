@@ -1,8 +1,8 @@
+import './App.css';
 import { useEffect, useState} from 'react';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Web3 from 'web3';
 
-import './App.css';
 import Navbar from './components/Navbar';
 import { Home, Profile, Create, Explore, TokenDetail } from './pages';
 import { useSelector } from 'react-redux'; // redux
@@ -42,6 +42,9 @@ function App() {
           <Route path="/create" element={<Create contractAddr={contractAddr} navigate={navigate} web3={web3} />} />
           <Route path="/profile" element={<Profile contractList={contractList} navigate={navigate} web3={web3} />} />
       </Routes>
+      <footer className='site-footer'>
+        <p className='site-footer-text'>Project Team LeeSEA 🚀 </p>
+      </footer>
     </div>
   );
 }

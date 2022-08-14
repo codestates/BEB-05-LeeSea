@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { setAccount } from "../redux/actions";  // redux
 import { useSelector, useDispatch } from 'react-redux'; // redux
 import Web3 from 'web3'
-import './styles/Navbar.css';
+// import './styles/Navbar.css';
 
 function Navbar({ }) {
     const accountState = useSelector((state) => state.accountReducer)
@@ -17,12 +17,12 @@ function Navbar({ }) {
     }
 
     return (
-        <div className="Navbar">
-            <nav className="navbar navbar-expand-lg bg-light">
+        <div className="gnb">
+            <nav className="nav">
                 <div className="container-fluid">
                     {/* logo */}
                     <Link to="/" className="navbar-brand">
-                        <img src="https://ipfs.io/ipfs/QmYU1BhbqiNreJN5T6L7LUBHtHtYiWWjeh5RhkgapEsK7Q?filename=QmYU1BhbqiNreJN5T6L7LUBHtHtYiWWjeh5RhkgapEsK7Q" alt="" width="30" height="24" className="logo d-inline-block align-text-top" />
+                        {/* <img src="https://ipfs.io/ipfs/QmYU1BhbqiNreJN5T6L7LUBHtHtYiWWjeh5RhkgapEsK7Q?filename=QmYU1BhbqiNreJN5T6L7LUBHtHtYiWWjeh5RhkgapEsK7Q" alt="" width="30" height="24" className="logo d-inline-block align-text-top" /> */}
                         LeeSea
                     </Link>
                     {/* items */}

@@ -21,14 +21,14 @@ function Erc721({ tokenId }) {
                     className='token-thumb'/>
                 {/* name ▼ */}
                 <h4 className="name">{tokenMetadata.name}</h4>
-                <div className="price">
+                {/* <div className="price">
                     <div className="price-img">
                         <img width={10} src="https://static.opensea.io/general/ETH.svg" />
                     </div>
                     <div className="price-text">
                         {tokenMetadata.price}
                     </div>
-                </div>
+                </div> */}
             </Link>
         </div>
     ): null;

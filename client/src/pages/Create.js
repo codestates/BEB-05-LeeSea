@@ -13,7 +13,6 @@ function Create() {
     let [name, setName] = useState("")
     let [desc, setDesc] = useState("")
     let [collection, setCollection] = useState("")
-    let [price, setPrice] = useState("")
     const account = useSelector((state) => state.account.address);
     let [isNotValidated, setIsNotValidated] = useState(false)
     let [isLoading, setIsLoading] = useState(false)
@@ -37,16 +36,11 @@ function Create() {
     let handleChangeCollection = (value) => {
         setCollection(value)
     }
-    let handleChangePrice = (value) => {
-        setPrice(value)
-    }
     let createNft = async () => {
         if (fileBlob === "") setIsNotValidated(1)
         else if (name === "") setIsNotValidated(2)
         else if (desc === "") setIsNotValidated(3)
         else if (collection === "") setIsNotValidated(4)
-        else if (price === "") setIsNotValidated(5)
-        else if (isNaN(price)) setIsNotValidated(6)
         else {
             setIsLoading(1)
             setIsNotValidated(false)
@@ -57,8 +51,7 @@ function Create() {
                     name: name,
                     description: desc,
                     properties: {
-                        collection: collection,
-                        price: price
+                        collection: collection
                     }
                 }
 
@@ -127,8 +120,6 @@ function Create() {
                             <input type="text" className="create-form-name" placeholder="Provide a detailed description of your item." onChange={(e) => handleChangeDesc(e.target.value)} />
                             <label className="create-input-label">컬렉션 이름*</label>
                             <input type="text" className="create-form-name" placeholder="Collection Name" onChange={(e) => handleChangeCollection(e.target.value)} />
-                            <label className="create-input-label">판매 가격*</label>
-                            <input type="text" className="create-form-name" placeholder="Ether Price (ex. 0.5Eth => 0.5)" onChange={(e) => handleChangePrice(e.target.value)} />
                         </div>
                         {/* 하단 버튼 */}
                     </div>

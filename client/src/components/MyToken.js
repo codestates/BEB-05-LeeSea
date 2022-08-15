@@ -17,10 +17,10 @@ function MyToken({ tokenId }){
           <img src={tokenMetadata.image} className="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title">{tokenMetadata.name}</h5>
-              <p className="card-text">
+              {/* <p className="card-text">
                 <img width={10} src="https://static.opensea.io/general/ETH.svg" />
                 {tokenMetadata.price}
-              </p>
+              </p> */}
           </div>
         </div>
       </div>

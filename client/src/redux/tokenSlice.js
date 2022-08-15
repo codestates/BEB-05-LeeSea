@@ -152,7 +152,7 @@ export const tokenSlice = createSlice({
                     name: action.payload.name,
                     description: action.payload.description,
                     collection: action.payload.properties.collection || 'pepe',
-                    price: action.payload.properties.price,
+                    // price: action.payload.properties.price,
                     image: action.payload.image,
                     owner: action.payload.owner
                 }
@@ -174,7 +174,7 @@ export const tokenSlice = createSlice({
                     name: action.payload.name,
                     description: action.payload.description,
                     collection: action.payload.properties.collection || 'pepe',
-                    price: action.payload.properties.price,
+                    // price: action.payload.properties.price,
                     image: action.payload.image,
                     owner: action.payload.owner
                 }

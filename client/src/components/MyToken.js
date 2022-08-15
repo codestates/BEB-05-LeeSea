@@ -12,6 +12,7 @@ function MyToken({ tokenId }){
   }, [])
   return tokenMetadata ? (
     <div className = "MyToken">
+      <Link to={`/explore/${tokenId}`}>
       <div className="col">
         <div className="card">
           <img src={tokenMetadata.image} className="card-img-top" alt="..." />
@@ -24,6 +25,7 @@ function MyToken({ tokenId }){
           </div>
         </div>
       </div>
+      </Link>
     </div>
   ): null;
 }

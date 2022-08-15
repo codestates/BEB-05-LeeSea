@@ -12,7 +12,7 @@
 }
 
 html,
-body {
+body, .App {
   height: 100%;
 }
 
@@ -225,6 +225,61 @@ a {
   color: #14171a;
 }
 
+.token-detail-page {
+  display: flex;
+  padding: 8rem 4rem 8rem 4rem;
+  width: 136rem;
+  margin: auto;
+  gap: 2.4rem;
+}
+.token-detail-page .tokenDetailThumb {
+  width: 68rem;
+  height: 68rem;
+  object-fit: cover;
+}
+.token-detail-page .tokenInfoArea .tokenName {
+  font-size: 4rem;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 800;
+}
+.token-detail-page .tokenInfoArea .tokenSymbol {
+  font-size: 2.4rem;
+}
+.token-detail-page .tokenInfoArea .tokenDescArea {
+  margin-bottom: 3.2rem;
+}
+.token-detail-page .tokenInfoArea .tokenDescArea .tokenDesc {
+  font-size: 2.4rem;
+}
+.token-detail-page .tokenInfoArea .tokenDescArea .tokenDescBody {
+  font-size: 1.7rem;
+  line-height: 2.8rem;
+}
+.token-detail-page .tokenInfoArea .detail-btn {
+  display: block;
+  width: 100%;
+  background-color: #1DA1F2;
+  border: none;
+  padding: 1.6rem;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+.token-detail-page .tokenInfoArea .buyNFT:hover {
+  background-color: #6dc4f9;
+}
+.token-detail-page .tokenInfoArea .goToList {
+  background-color: #ffffff;
+  color: #14171a;
+  border: 1px solid #a1a1a1;
+  font-weight: 400;
+}
+.token-detail-page .tokenInfoArea .goToList:hover {
+  background-color: #f1f1f1;
+}
+
 .home-container {
   display: flex;
   flex-direction: column;
@@ -289,10 +344,97 @@ a {
   justify-content: center;
   align-items: center;
   height: 9.6rem;
-  background-color: #14171a;
+  background-color: #ffffff;
+  width: 100%;
 }
 .site-footer .site-footer-text {
-  color: #ffffff;
+  color: #000;
   font-size: 1.6rem;
   margin-bottom: 0;
+}
+
+.profile-header {
+  padding: 4rem;
+}
+.profile-header .profile-header-1 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.profile-header .profile-header-1 .profile-header-title {
+  font-size: 4.8rem;
+  font-family: "Amaranth", sans-serif;
+  margin-right: 2rem;
+}
+.profile-header .profile-header-1 .logout-btn {
+  height: 4.8rem;
+  width: 12rem;
+  background-color: #ffffff;
+  border: 1px solid tomato;
+  font-size: 1.6rem;
+  color: tomato;
+  border-radius: 0.4rem;
+}
+.profile-header .profile-header-1 .logout-btn:hover {
+  background-color: tomato;
+  color: #ffffff;
+}
+.profile-header .profile-header-2 {
+  display: flex;
+  align-items: center;
+}
+.profile-header .profile-header-2 .profile-header-2-image {
+  width: 2rem;
+  margin-right: 0.8rem;
+}
+.profile-header .profile-header-2 .account-address {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.profile-contents {
+  padding: 0 4rem;
+}
+.profile-contents .profile-item-header {
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 2rem;
+  font-size: 2.4rem;
+  font-weight: 6rem;
+  margin-bottom: 4rem;
+}
+.profile-contents .profile-items {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 2rem;
+}
+.profile-contents .profile-items .MyTokenList {
+  overflow: hidden;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 0 0.4rem 0.1rem rgba(160, 160, 160, 0.1);
+}
+.profile-contents .profile-items .MyTokenList .card {
+  background-color: #ffffff;
+  padding: 0.8rem;
+  border: none;
+}
+.profile-contents .profile-items .MyTokenList .card .card-body .card-title {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px dotted #e1e1e1;
+  padding: 1.6rem 0;
+}
+.profile-contents .profile-items .MyTokenList .card .card-body .card-text {
+  font-size: 1.6rem;
+  padding-top: 0.4rem;
+  display: flex;
+  align-items: cetner;
+}
+.profile-contents .profile-items .MyTokenList .card .card-body .card-text .card-text-icon {
+  width: 1.2rem;
+  margin-right: 0.8rem;
+}
+.profile-contents .profile-items .MyTokenList .card .card-body .card-text .card-token-price {
+  font-size: 1.6rem;
+  margin: 0;
 }

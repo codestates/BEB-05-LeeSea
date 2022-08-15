@@ -41,7 +41,6 @@ function Profile() {
           </div>
           <div className="profile-header-2">
             <img className="profile-header-2-image" src="https://static.opensea.io/general/ETH.svg" />
-            { account }
             <p className="account-address">{account}</p>
           </div>
         </div>

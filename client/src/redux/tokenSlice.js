@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
-import erc721Abi from "../erc721Abi";
-import { CONTRACT_ADDR as contractAddr } from '../global_variables';
+// import erc721Abi from "../erc721Abi";
+import { CONTRACT_ADDR as contractAddr, CONTRACT_ABI } from '../global_variables';
 import Web3 from 'web3';
 
 
@@ -29,7 +29,7 @@ const initializeTokenContract = async (thunkAPI) => {
     if (!thunkAPI.getState().tokenContract) {
         const web3 = await initializeWeb3(thunkAPI);
         const tokenContract = await new web3.eth.Contract(
-            erc721Abi,
+            CONTRACT_ABI,
             contractAddr
         );
         const contractName = await tokenContract.methods.name().call();
@@ -58,10 +58,22 @@ const fetchTokenWithContractAndTokenId = async (tokenContract, tokenId) => {
 const updateTokenOwner = createAsyncThunk(
     `${name}/UPDATE_TOKEN_OWNER`,
     async ({tokenId, myAddress}, thunkAPI) => {
+        console.log("*************************")
+        console.log(tokenId);
+        console.log(myAddress);
         const tokenContract = await initializeTokenContract(thunkAPI);
         const tokenOwner = await tokenContract.methods.ownerOf(tokenId).call();
-        await tokenContract.methods.safeTransferFrom(tokenOwner, myAddress, tokenId).call();
-        return fetchTokenWithContractAndTokenId(tokenContract, tokenId);
+        console.log(tokenOwner);
+        await tokenContract.methods
+            .transferFrom(tokenOwner, myAddress, tokenId)
+            .send({from: tokenOwner})
+            .on("receipt", (receipt) => {
+                if (receipt) {
+                    return receipt;
+                }
+                return false;
+            });
+        return await fetchTokenWithContractAndTokenId(tokenContract, tokenId);
     }
 );
 
@@ -80,7 +92,7 @@ const setTokenContract = createAsyncThunk(
         if (!thunkAPI.getState().tokenContract) {
             const web3 = await initializeWeb3(thunkAPI);
             const tokenContract = await new web3.eth.Contract(
-                erc721Abi,
+                CONTRACT_ABI,
                 contractAddr
             );
             return tokenContract;
@@ -109,7 +121,7 @@ const fetchToken = createAsyncThunk(
     `${name}/FETCH`,
     async (tokenId, thunkAPI) => {
         const tokenContract = await initializeTokenContract(thunkAPI);
-        return fetchTokenWithContractAndTokenId(tokenContract, tokenId);
+        return await fetchTokenWithContractAndTokenId(tokenContract, tokenId);
     }
 );
 

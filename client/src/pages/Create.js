@@ -71,7 +71,8 @@ function Create() {
                 console.log(tokenURI)
 
                 setIsLoading(3)
-                let nft = await tokenContract.methods.mintNFT(account, tokenURI).send({
+                console.log(account);
+                await tokenContract.methods.mintNFT(account, tokenURI).send({
                     from: account,
                     gas: 1500000,
                     gasPrice: '3000000'

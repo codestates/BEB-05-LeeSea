@@ -7,12 +7,17 @@ const initialState = {
     loading: false,
 }
 
+const getAccounts = async() => {
+    await window.ethereum.enable();
+    return await window.ethereum.request({
+        method: "eth_requestAccounts",
+    });
+}
+
 const fetchAccount = createAsyncThunk(
     `${name}/FETCH`,
     async () => {
-        const accounts = await window.ethereum.request({
-            method: "eth_requestAccounts",
-        });
+        const accounts = await getAccounts();
         return accounts[0];
     }
 );

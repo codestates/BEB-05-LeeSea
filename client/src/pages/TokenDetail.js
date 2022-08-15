@@ -15,7 +15,6 @@ function TokenDetail() {
 
     const buyNFT = () => {
         if (account) {
-            console.log(account);
             dispatch(tokenActions.updateTokenOwner({tokenId, myAddress: account}));
         }
     };

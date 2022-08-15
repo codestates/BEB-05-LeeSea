@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'; // redux
-import '../components/styles/Profile.css';
+// import '../components/styles/Profile.css';
 import MyToken from '../components/MyToken';
 import { accountActions } from '../redux/accountSlice';
 import { tokenActions } from '../redux/tokenSlice'
@@ -37,21 +37,20 @@ function Profile() {
         <div className="profile-header">
           <div className="profile-header-1">
             <h2 className="profile-header-title">Profile</h2>
-            <button type="button" className="logout-btn btn btn-outline-danger" onClick={signout}>로그아웃</button>
+            <button type="button" className="logout-btn" onClick={signout}>로그아웃</button>
           </div>
           <div className="profile-header-2">
             <img className="profile-header-2-image" src="https://static.opensea.io/general/ETH.svg" />
             { account }
+            <p className="account-address">{account}</p>
           </div>
         </div>
 
-        <div className="profile-contents row align-items-start">
+        <div className="profile-contents">
           <h5 className="profile-item-header">내 NFT 목록</h5>
-            <hr />
-            <div className="row row-cols-1 row-cols-md-3 g-4">
+            <div className="profile-items">
               {myTokenIds.map((tokenId) => <MyToken tokenId={tokenId} key={tokenId} />)}
             </div>
-            <hr />
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ function TokenDetail() {
     };
 
     return tokenMetadata ? (        
-        <div>
+        <div className="token-detail-page" >
             <img src={tokenMetadata.image} alt="" className="tokenDetailThumb" />
             <div className="tokenInfoArea">
                 <h3 className="tokenName">{tokenMetadata.name}</h3>
@@ -29,8 +29,8 @@ function TokenDetail() {
                     <h4 className="tokenDesc">Description</h4>
                     <p className="tokenDescBody">{tokenMetadata.description}</p>
                 </div>
-                <button className="buyNFT" onClick={buyNFT}>구매하기</button>
-                <Link to="/explore"><button className="goToList">목록으로</button></Link>
+                <button className="buyNFT detail-btn" onClick={buyNFT}>구매하기</button>
+                <Link to="/explore"><button className="goToList detail-btn">목록으로</button></Link>
             </div>
         </div>
     ): null;

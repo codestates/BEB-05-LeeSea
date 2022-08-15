@@ -20,10 +20,7 @@ function Erc721({ tokenId }) {
                     className='token-thumb'/>
                 {/* name ▼ */}
                 <h4 className="name">{tokenMetadata.name}</h4>
-                {/* <div className="price">Price: {tokenMetadata.price} ETH</div> */}
-                {/* <span className="symbol">{tokenSymbol}</span> */}
-                {/* id ▼ */}
-                <div className="nft">id: {tokenMetadata.tokenId}</div>
+                <div className="nft">Price: {tokenMetadata.price} ETH</div>
             </Link>
         </div>
     ): null;

@@ -6,10 +6,14 @@ import Erc721 from '../components/Erc721';
 
 function Explore(){
     const totalSupply = useSelector((state) => state.token.totalSupply);
+    const account = useSelector((state) => state.account.address);
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(tokenActions.setTotalSupply());
-    }, [])
+        if (account) {
+          dispatch(tokenActions.setMyTokenIds(account));
+        }
+    }, [account])
     return(
         <div className = "tokenlist">
             <h2 className="explore-title">Explore</h2>

@@ -237,6 +237,9 @@ a {
   height: 68rem;
   object-fit: cover;
 }
+.token-detail-page .tokenInfoArea {
+  min-width: 30rem;
+}
 .token-detail-page .tokenInfoArea .tokenName {
   font-size: 4rem;
   font-family: "Pretendard", sans-serif;

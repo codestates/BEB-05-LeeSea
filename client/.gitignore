@@ -6,6 +6,7 @@ global_variable.js
 /node_modules
 /.pnp
 .pnp.js
+/scss
 
 # testing
 /coverage

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import '../components/styles/Create.css'
 import { NFTStorage } from "nft.storage/dist/bundle.esm.min.js";
 import { NFT_STORAGE_API_KEY as API_KEY } from '../global_variables'

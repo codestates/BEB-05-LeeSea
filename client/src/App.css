@@ -1,38 +1,298 @@
-.App {
-  text-align: center;
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  color: #14171a;
+  font-size: 10px;
+  font-family: "Pretendard", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.gnb {
+  height: 8rem;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: #ffffff;
+}
+.gnb .nav {
+  height: inherit;
+  padding: 0 4rem;
+  box-shadow: 0.3rem 0.2rem 0.4rem 0.1rem rgba(160, 160, 160, 0.3);
+  border-bottom: 1px solid #f1f1f1;
+}
+.gnb .nav .container-fluid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gnb .nav .container-fluid .navbar-brand {
+  font-size: 4rem;
+  font-family: "Amaranth", sans-serif;
+}
+.gnb .nav .container-fluid .navbar-items {
+  display: flex;
+  align-items: center;
+}
+.gnb .nav .container-fluid .navbar-items .nav-item {
+  margin-right: 2.4rem;
+  font-family: "Amaranth", sans-serif;
+  font-size: 2rem;
+  color: #14171a;
+}
+.gnb .nav .container-fluid .navbar-items .nav-item:hover {
+  color: #4abcfc;
+}
+.gnb .nav .container-fluid .navbar-items .connect-wallet-img {
+  max-width: 4rem;
+  max-height: 4rem;
+}
+.gnb .nav .container-fluid .navbar-items .connect-wallet-btn {
+  padding: 0.8rem 2rem;
+  font-size: 1.6rem;
+}
+.gnb .nav .container-fluid .navbar-items .connect-wallet-btn:hover {
+  background-color: #00a2ff;
+  border: 1px solid #4abcfc;
+}
+
+.tokenlist {
+  padding: 40px;
+}
+.tokenlist .explore-title {
+  font-size: 4.8rem;
+  margin-bottom: 2rem;
+  font-family: "Amaranth", sans-serif;
+}
+.tokenlist .explore-description {
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+  font-family: "Amaranth", sans-serif;
+}
+.tokenlist .erc721List {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0.8rem;
+}
+.tokenlist .erc721List .erc721token {
+  background-color: #ffffff;
+  box-shadow: 0 0.4rem 0.8rem 0.4rem rgba(235, 235, 235, 0.4);
+  border-radius: 0.4rem;
+  border: 1px solid rgba(220, 220, 220, 0.4);
+}
+.tokenlist .erc721List .erc721token .token-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem;
+}
+.tokenlist .erc721List .erc721token .token-item img {
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  max-height: 24rem;
+  margin-bottom: 0.8rem;
+}
+.tokenlist .erc721List .erc721token .token-item .name {
+  font-size: 2.4rem;
+}
+.tokenlist .erc721List .erc721token .token-item .symbol {
+  font-size: 2rem;
+}
+.tokenlist .erc721List .erc721token .token-item .nft {
+  font-size: 1.6rem;
+}
+
+.loading-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.7176470588);
+  z-index: 999;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.loading-text {
+  font: 1rem "Noto Sans KR";
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Create {
+  padding: 40px;
+}
+.Create .create-header {
+  margin: 0;
+}
+.Create .create-header .create-header-title {
+  font-size: 4.8rem;
+  margin-bottom: 2rem;
+  font-family: "Amaranth", sans-serif;
+}
+.Create .create-header .create-description {
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+}
+.Create .create-contents {
+  max-width: 144rem;
+  background-color: #f9f9f9;
+  padding: 4rem;
+  align-items: center;
+}
+.Create .create-contents .create-inner-area {
+  box-shadow: 0 0.4rem 0.8rem 0.4rem rgba(245, 245, 245, 0.8);
+  border-radius: 1.6rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 4rem;
+  margin-bottom: 2rem;
+}
+.Create .create-contents .create-inner-area .create-item-img {
+  max-width: 48rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+}
+.Create .create-contents .create-inner-area .create-item-img .create-upload-file {
+  font-size: 2rem;
+}
+.Create .create-contents .create-inner-area .create-item-img .create-upload-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  width: 32rem;
+  cursor: pointer;
+}
+.Create .create-contents .create-inner-area .create-item-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.Create .create-contents .create-inner-area .create-item-info .create-input-label {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+.Create .create-contents .create-inner-area .create-item-info .create-form-name {
+  font-size: 2rem;
+  line-height: 4rem;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 2rem;
+  border-radius: 0.4rem;
+  border: 1px solid #a1a1a1;
+}
+.Create .create-contents .create-btns {
+  margin: 0;
+}
+.Create .create-contents .create-btns .create-btn {
+  font-size: 2rem;
+  padding: 1.2rem 4rem;
+  margin: 0;
+  margin-right: 1.6rem;
+}
+.Create .create-contents .create-btns .create-btn:first-child {
+  font-weight: 700;
+}
+.Create .create-contents .create-btns .create-btn:first-child:hover {
+  background-color: #00a2ff;
+  border: 1px solid #00a2ff;
+  color: #ffffff;
+}
+.Create .create-contents .create-btns .create-btn:last-child {
+  font-weight: 400;
+}
+.Create .create-contents .create-btns .create-btn:last-child:hover {
+  background-color: #e9e9e9;
+  border: 1px solid #e9e9e9;
+  color: #14171a;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  overflow: hidden;
+}
+.home-container .home-title-section {
+  padding: 8rem 0;
+}
+.home-container .home-title-section .home-title-area {
+  margin-bottom: 1.6rem;
+}
+.home-container .home-title-section .home-title-area .home-title {
+  font-size: 4.8rem;
+  font-family: "Amaranth", sans-serif;
+  margin-bottom: 2.4rem;
+}
+.home-container .home-title-section .home-title-area .home-description {
+  font-size: 2.8rem;
+  font-weight: 200;
+  font-family: "Pretendard", sans-serif;
+  line-height: 4rem;
+  margin-bottom: 3.2rem;
+}
+.home-container .home-title-section .home-btn-area .home-btn {
+  font-size: 1.8rem;
+  padding: 1.2rem 4rem;
+  margin-right: 0.8rem;
+  border-radius: 0.6rem;
+  font-family: "Amaranth", sans-serif;
+}
+.home-container .home-title-section .home-btn-area .go-to-explore {
+  background-color: #1DA1F2;
+  border: 1px solid #1DA1F2;
+  color: #ffffff;
+  font-weight: 400;
+}
+.home-container .home-title-section .home-btn-area .go-to-explore:hover {
+  background-color: #49adeb;
+}
+.home-container .home-title-section .home-btn-area .go-to-create {
+  background-color: #ffffff;
+  border: 1px solid #a1a1a1;
+}
+.home-container .home-title-section .home-btn-area .go-to-create:hover {
+  transition: 0.3s;
+  box-shadow: 0 0 0.2rem 0.1rem rgba(50, 50, 50, 0.2);
+}
+.home-container .home-title-image {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.home-container .home-title-image .image-item {
+  min-height: 32rem;
+  object-fit: cover;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 9.6rem;
+  background-color: #14171a;
+}
+.site-footer .site-footer-text {
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin-bottom: 0;
 }

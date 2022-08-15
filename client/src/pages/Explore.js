@@ -12,6 +12,8 @@ function Explore(){
     }, [])
     return(
         <div className = "tokenlist">
+            <h2 className="explore-title">Explore</h2>
+            <p className="explore-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim ipsa vitae fugiat, ullam similique quisquam magni, eveniet maxime earum dolor vero minus est laudantium ducimus quia sed amet aspernatur ipsum!</p>
             <div className="erc721List">
                 {[...Array(totalSupply)].map((_, idx) => {
                     const tokenId = idx + 1;

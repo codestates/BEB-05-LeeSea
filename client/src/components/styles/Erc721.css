@@ -1,0 +1,17 @@
+.price {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    height: 1rem;
+    margin-top: 0.5rem;
+}
+.price .price-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 0.8rem;
+    margin-right: 0.3rem;
+}
+.price .price-text {
+    height: 2rem;
+}

@@ -2,29 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-
-	const HeadText = "Discover, collect, and sell extraordinary NFTs"
-	const DescText = "OpenSea is the world's first and largest NFT marketplace"
-
-	return(
-		<div>
-			<div style={{float: 'left', width: '40%', padding: '3% 3% 3% 3%', margin: 'auto'}}>
-					<div style={{margin: "auto"}}>
-						<h1 style={{textAlign: 'left'}}>{HeadText}</h1>
-						<h3 style={{textAlign: 'left', color: 'gray'}}>{DescText}</h3>
-					</div>
-					{/* button from https://getbootstrap.com/docs/4.3/components/buttons/ */}
-					<div style={{display: "flex", marginTop: "10%", justifyContent: "center"}}>
-						<Link to="/explore" style={{marginRight: "5%"}}><button type="button" className="btn btn-primary btn-lg" style={{width: "100%", margin: "auto"}}>Explore</button></Link>
-						<Link to="/create"><button type="button" className="btn btn-outline-primary btn-lg" style={{width: "100%", margin: "auto"}}>Create</button></Link>
-					</div>
+	return (
+		<div className='home-container'>
+			<div className='home-title-section'>
+				<div className='home-title-area'>
+					<h1 className='home-title'>Welcome to LeeSea!<br></br>Discover, collect, and sell extraordinary NFTs</h1>
+					<h3 className='home-description'>LeeSea가 만든 NFT마켓에 지금 참여하세요.</h3>
+				</div>
+				<div className='home-btn-area'>
+					<Link to="/explore"><button type="button" class="home-btn go-to-explore">Explore</button></Link>
+					<Link to="/create"><button type="button" class="home-btn go-to-create">Create</button></Link>
+				</div>
 			</div>
-			<div className="div-right" style={{float: 'right', width: '55%', padding: '3% 3% 3% 3%', margin: 'auto'}}>
-				<img src="https://lh3.googleusercontent.com/GSY2LRyWOHJkI8ejCFNrVkgDeJ0FlOaPVfNgqVwrDikYbljp4R7riphQF6KAonrv08yc7uckwY7CBekbi-XgeEGI-ocq_LVHabFm8A=w600" width="100%" height="100%" alt='...'></img>
+			<div className="home-title-image" >
+				<img className='image-item' src="https://cdn.pixabay.com/photo/2016/07/11/11/48/printing-on-t-shirt-1509512_1280.png" width="100%" height="100%" alt='...'></img>
+				<img className='image-item' src="https://cdn.pixabay.com/photo/2016/09/12/05/41/van-gogh-1663090_1280.jpg" width="100%" height="100%" alt='...'></img>
+				<img className='image-item' src="https://cdn.pixabay.com/photo/2020/06/06/11/48/caricature-5266261_1280.jpg" width="100%" height="100%" alt='...'></img>
+				<img className='image-item' src="https://cdn.pixabay.com/photo/2018/03/20/10/04/illustrator-3242713_1280.jpg" width="100%" height="100%" alt='...'></img>
+				<img className='image-item' src="https://cdn.pixabay.com/photo/2017/03/19/15/14/happiness-2156794_1280.png" width="100%" height="100%" alt='...'></img>
+				<img className='image-item' src="https://cdn.pixabay.com/photo/2018/04/09/19/55/low-poly-3305284_1280.jpg" width="100%" height="100%" alt='...'></img>
+				<img className='image-item' src="https://cdn.pixabay.com/photo/2020/05/19/13/48/cartoon-5190942_1280.jpg" width="100%" height="100%" alt='...'></img>
+				<img className='image-item' src="https://cdn.pixabay.com/photo/2020/06/10/02/22/caricature-5280770_1280.jpg" width="100%" height="100%" alt='...'></img>
 			</div>
+			{/* <img className="home-title-image" src="" width="100%" height="100%" alt='...'></img> */}			
 		</div>
 	);
- 
+
 }
 
 

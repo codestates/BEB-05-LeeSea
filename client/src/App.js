@@ -17,6 +17,9 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/profile" element={<Profile />} />
       </Routes>
+      <footer className='site-footer'>
+        <p className='site-footer-text'>Project Team LeeSEA 🚀 </p>
+      </footer>
     </div>
   );
 }

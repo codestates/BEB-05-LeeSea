@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/BEB-05-LeeSea/static/css/main.2fe58820.chunk.css",
+    "main.js": "/BEB-05-LeeSea/static/js/main.6f2af1f7.chunk.js",
+    "main.js.map": "/BEB-05-LeeSea/static/js/main.6f2af1f7.chunk.js.map",
+    "runtime-main.js": "/BEB-05-LeeSea/static/js/runtime-main.72f59fed.js",
+    "runtime-main.js.map": "/BEB-05-LeeSea/static/js/runtime-main.72f59fed.js.map",
+    "static/js/2.fdcf857c.chunk.js": "/BEB-05-LeeSea/static/js/2.fdcf857c.chunk.js",
+    "static/js/2.fdcf857c.chunk.js.map": "/BEB-05-LeeSea/static/js/2.fdcf857c.chunk.js.map",
+    "index.html": "/BEB-05-LeeSea/index.html",
+    "static/css/main.2fe58820.chunk.css.map": "/BEB-05-LeeSea/static/css/main.2fe58820.chunk.css.map",
+    "static/js/2.fdcf857c.chunk.js.LICENSE.txt": "/BEB-05-LeeSea/static/js/2.fdcf857c.chunk.js.LICENSE.txt",
+    "static/media/spinner.602e520c.gif": "/BEB-05-LeeSea/static/media/spinner.602e520c.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.72f59fed.js",
+    "static/js/2.fdcf857c.chunk.js",
+    "static/css/main.2fe58820.chunk.css",
+    "static/js/main.6f2af1f7.chunk.js"
+  ]
+}

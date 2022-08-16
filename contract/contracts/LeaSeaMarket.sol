@@ -14,7 +14,7 @@ contract LeaSeaMarket {
     mapping(uint256 => MarketItem) idMarketItem;
 
     enum ItemStatus {  
-        ON_SALE, SOLD, CANCELED
+        ON_SALE, SOLD, SALE_CANCELED
     }
 
     struct NFTToken {
@@ -84,23 +84,19 @@ contract LeaSeaMarket {
         );
     }
 
-    function cancel(
+    function saleCancel(
         address _contractAddr,
         uint256 _itemId
     ) public {
-        // require(msg.sender == idMarketItem[_itemId].seller, "only seller can cancel");
-        // require(ItemStatus.ON_SALE == idMarketItem[_itemId].itemStatus, "item is not on sale");
+        require(msg.sender == idMarketItem[_itemId].seller, "only seller can cancel");
+        require(ItemStatus.ON_SALE == idMarketItem[_itemId].itemStatus, "item is not on sale");
 
         uint tokenId = idMarketItem[_itemId].token.tokenId;
 
-        if (
-            msg.sender == idMarketItem[_itemId].seller &&
-            idMarketItem[_itemId].itemStatus == ItemStatus.ON_SALE
-        ) {
-            ERC721(_contractAddr).transferFrom(address(this), msg.sender, tokenId);
-            idMarketItem[_itemId].itemStatus = ItemStatus.CANCELED;
-            _itemsSoldOrCanceled.increment();
-        }
+        ERC721(_contractAddr).transferFrom(address(this), msg.sender, tokenId);
+
+        idMarketItem[_itemId].itemStatus = ItemStatus.SALE_CANCELED;
+        _itemsSoldOrCanceled.increment();
         
 
         emit SaleCanceled(

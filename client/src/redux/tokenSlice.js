@@ -82,9 +82,12 @@ const addItemOnSaleThunk = createAsyncThunk(
             .sell(
                 NFT_CONTRACT_ADDR,
                 tokenId,
-                Web3.utils.toWei(price)
+                Web3.utils.toWei(price),
             )
-            .send({from: myAddress})
+            .send({
+                from: myAddress,
+                value: Web3.utils.toWei('0.02', 'ether')
+            })
             .on("receipt", (receipt) => {
                 if (receipt) {
                     const returnValues = receipt.events.ItemCreated.returnValues;
@@ -114,7 +117,7 @@ const removeItemOnSaleThunk = createAsyncThunk(
         console.log(myAddress);
         console.log(itemId);
         await marketContract.methods
-            .cancel(
+            .saleCancel(
                 NFT_CONTRACT_ADDR,
                 itemId
             )

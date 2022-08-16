@@ -3,7 +3,7 @@
 NFT를 민팅하고 거래할 수 있는 플랫폼
 
 - [LeeSea 사이트](https://codestates.github.io/BEB-05-LeeSea)
-- [Notion 페이지](#)
+- [Notion 페이지](https://songzero.notion.site/LeeSea-NFT-Marketplace-c604402b9f444f7b85a302d09918abd7)
 - 프로젝트 기간: 2022.08.08 ~ 2022.08.16
 
 

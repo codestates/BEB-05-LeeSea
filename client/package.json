@@ -10,6 +10,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "env-cmd": "^10.1.0",
+    "gh-pages": "^4.0.0",
     "nft.storage": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -35,7 +36,9 @@
     "build": "env-cmd -f .env react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sass": "sass --no-source-map ./scss/style.scss ./src/App.css --watch"
+    "sass": "sass --no-source-map ./scss/style.scss ./src/App.css --watch",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +58,7 @@
       "last 1 safari version"
     ]
   },
+  "homepage": "https://codestates.github.io",
   "devDependencies": {
     "assert": "^2.0.0",
     "buffer": "^6.0.3",

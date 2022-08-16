@@ -100,7 +100,7 @@ function Create() {
             <div className={!account ? "hidden" : ""}>
                 <div className="create-header">
                     <h2 className="create-header-title">Create New Item</h2>
-                    <p className="create-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim ipsa vitae fugiat, ullam similique quisquam magni, eveniet maxime earum dolor vero minus est laudantium ducimus quia sed amet aspernatur ipsum!</p>
+                    <p className="create-description">Turn your image into extraordinary NFTs.</p>
                 </div>
 
                 {/* divide into 2 columns */}

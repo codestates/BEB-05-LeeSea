@@ -11,7 +11,11 @@ contract LeaSeaNFT is ERC721URIStorage, Ownable, ERC721Enumerable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor() public ERC721("cozNFT", "NFT"){}
+    address marketContractAddress;
+
+    constructor(address contractAddress) ERC721("leaSeaNFT", "NFT"){
+        marketContractAddress = contractAddress;
+    }
 
     function _beforeTokenTransfer(
         address from,
@@ -29,7 +33,7 @@ contract LeaSeaNFT is ERC721URIStorage, Ownable, ERC721Enumerable {
         super._burn(tokenId);
     }
 
-  function supportsInterface(bytes4 interfaceId)
+    function supportsInterface(bytes4 interfaceId)
         public
         view
         override(ERC721, ERC721Enumerable)
@@ -37,19 +41,21 @@ contract LeaSeaNFT is ERC721URIStorage, Ownable, ERC721Enumerable {
     {
         return super.supportsInterface(interfaceId);
     }
+
     function tokenURI(
-        uint256 tokenId
+        uint256 _tokenId
     ) public view
       override(ERC721, ERC721URIStorage) returns (string memory) {
-        return super.tokenURI(tokenId);
+        return super.tokenURI(_tokenId);
     }
     
-    function mintNFT(address recipient, string memory tokenURI) public returns (uint256) {
+    function mintNFT(address _recipient, string memory _tokenURI) public returns (uint256) {
         _tokenIds.increment();
 
         uint256 newItemId = _tokenIds.current();
-        _mint(recipient, newItemId);
-        _setTokenURI(newItemId, tokenURI);
+        _mint(_recipient, newItemId);
+        _setTokenURI(newItemId, _tokenURI);
+        setApprovalForAll(marketContractAddress, true); //grant transaction permission to market
 
         return newItemId;
     }

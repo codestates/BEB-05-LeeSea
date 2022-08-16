@@ -8,6 +8,7 @@ import './styles/TokenDetail.css'
 function TokenDetail() {
     const { tokenId } = useParams();
     const tokenMetadata = useSelector((state) => state.token.tokens[tokenId]);
+    const itemOnSaleMetadata = useSelector((state) => state.token.itemsOnSale[tokenId]);
     const myTokenIds = useSelector((state) => state.token.myTokenIds);
     const account = useSelector((state) => state.account.address);
     const [price, setPrice] = useState("")
@@ -15,8 +16,10 @@ function TokenDetail() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(tokenActions.fetchToken(tokenId));
+        // dispatch(tokenActions.setMarketContract());
         if (account) {
           dispatch(tokenActions.setMyTokenIds(account));
+          dispatch(tokenActions.fetchItemsOnSale());
         }
     }, [account]);
 
@@ -28,14 +31,19 @@ function TokenDetail() {
 
     const sellNFT = () => {
         if (price === "") {
-            setIsNotValidated(1)
-            return
+            setIsNotValidated(1);
+            return;
         }
         else if (isNaN(price)) {
-            setIsNotValidated(2)
-            return
+            setIsNotValidated(2);
+            return;
         }
-        setIsNotValidated(false)
+        setIsNotValidated(false);
+        dispatch(tokenActions.addItemOnSaleThunk({tokenId, myAddress: account, price: price}));
+    };
+
+    const cancelSale = () => {
+        dispatch(tokenActions.removeItemOnSaleThunk({myAddress: account, itemId: itemOnSaleMetadata.itemId}));
     };
 
     const handleChangePrice = (value) => {
@@ -50,7 +58,15 @@ function TokenDetail() {
                 <div className="tokenDescArea">
                     <h4 className="tokenDesc">Description</h4>
                     <p className="tokenDescBody">{tokenMetadata.description}</p>
+                    <p className="tokenDescBody">{tokenMetadata.description}</p>
                 </div>
+                {itemOnSaleMetadata ? 
+                    <label className="create-input-label">
+                        가격: {itemOnSaleMetadata.price}
+                        <img width={10} src="https://static.opensea.io/general/ETH.svg" />
+                    </label>
+                    : null
+                }
                 {account && myTokenIds.includes(parseInt(tokenId)) ?
                     <>
                         <label className="create-input-label">판매 가격*</label>
@@ -69,7 +85,9 @@ function TokenDetail() {
                         </div>
                     </>
                     : <>
-                        <button className="buyNFT detail-btn" onClick={buyNFT}>구매하기</button>
+                        {itemOnSaleMetadata && account && itemOnSaleMetadata.seller == account ?
+                            <button className="buyNFT detail-btn" onClick={cancelSale}>판매취소</button>
+                            : <button className="buyNFT detail-btn" onClick={buyNFT}>구매하기</button>}
                         <Link to="/explore"><button className="goToList detail-btn">목록으로</button></Link>
                     </>
                 }

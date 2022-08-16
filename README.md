@@ -19,14 +19,23 @@ NFT를 민팅하고 거래할 수 있는 플랫폼
 ## 📑 페이지
 
 1. Home: 메인 페이지이다.
+
     ![home.png](imgs/home.png)
+
 2. Explore: 등록된 NFT 작품을 탐색할 수 있다.
+
     ![explore.png](imgs/explore.png)
+
 3. TokenDetail: NFT 작품의 상세 정보를 확인하고 거래를 할 수 있다.
+
     ![tokendetail.png](imgs/tokendetail.png)
+
 4. Create: 이미지를 NFT로 민팅할 수 있다.
+
     ![create.png](imgs/create.png)
+
 5. Profile: 현재 계정의 정보와 소유한 NFT 작품을 확인할 수 있다.
+
     ![profile.png](imgs/profile.png)
 
 
@@ -86,6 +95,9 @@ NFT를 민팅하고 거래할 수 있는 플랫폼
 ## 🥕 팀원
 
 이성만 [@sungman5](https://github.com/sungman5)
+
 이송영 [@SongArtish](https://github.com/SongArtish)
+
 이혜인 [@hyenne](https://github.com/hyenne)
+
 이휘준 [@LEEHWIJOON](https://github.com/LEEHWIJOON)

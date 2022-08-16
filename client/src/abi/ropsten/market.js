@@ -15198,22 +15198,9 @@ const MARKET_ROPSTEN = {
     "name": "solc",
     "version": "0.8.15+commit.e14f2714.Emscripten.clang"
   },
-  "networks": {
-    "3": {
-      "events": {},
-      "links": {},
-      "address": "0xf5c75997456cB4b2D344580D23A1D901F14Df833",
-      "transactionHash": "0x72ee943462066d3ec3d2ed0dccf8e7db81ed0a9bc5be6b1b268fa47c509e322f"
-    },
-    "5777": {
-      "events": {},
-      "links": {},
-      "address": "0xbef83233470E33BD1a832b7e91D2db90f34646fF",
-      "transactionHash": "0x44c83eda72c7c6cd9bec28aa2bc68ce2b445cf08790ee7d6237e5972a64e2f8b"
-    }
-  },
+  "networks": {},
   "schemaVersion": "3.4.8",
-  "updatedAt": "2022-08-16T05:30:57.012Z",
+  "updatedAt": "2022-08-16T05:38:54.152Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -142,7 +142,7 @@ const removeItemOnSaleThunk = createAsyncThunk(
 
 const buyItemOnSale = createAsyncThunk(
     `${name}/BUY_ITEM_ON_SALE`,
-    async ({myAddress, itemId, price}, thunkAPI) => {
+    async ({itemId, myAddress, price}, thunkAPI) => {
         const marketContract = await initializeMarketContract(thunkAPI);
         await marketContract.methods
             .buy(

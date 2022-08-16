@@ -82,7 +82,7 @@ const addItemOnSaleThunk = createAsyncThunk(
             .sell(
                 NFT_CONTRACT_ADDR,
                 tokenId,
-                Web3.utils.toWei(price),
+                Web3.utils.toWei(String(price)),
             )
             .send({
                 from: myAddress,

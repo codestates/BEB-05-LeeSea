@@ -270,12 +270,14 @@ export const tokenSlice = createSlice({
                     seller: action.payload.seller
                 }
             }
+            state.myTokenIds = state.myTokenIds.filter(id => id != action.payload.tokenId)
         },
         removeItemOnSale: (
             state,
             action
         ) => {
-            state.itemsOnSale = {...(delete state.itemsOnSale[action.payload.itemId] && state.itemsOnSale)}
+            state.itemsOnSale = Object.fromEntries(Object.entries(state.itemsOnSale).filter(([key]) => key != action.payload.tokenId));
+            state.myTokenIds = [...state.myTokenIds, parseInt(action.payload.tokenId)]
         }
     },
     extraReducers: {

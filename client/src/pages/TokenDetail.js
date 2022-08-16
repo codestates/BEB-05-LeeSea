@@ -16,7 +16,6 @@ function TokenDetail() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(tokenActions.fetchToken(tokenId));
-        // dispatch(tokenActions.setMarketContract());
         if (account) {
           dispatch(tokenActions.setMyTokenIds(account));
           dispatch(tokenActions.fetchItemsOnSale());
@@ -25,6 +24,7 @@ function TokenDetail() {
 
     const buyNFT = () => {
         if (account) {
+            dispatch(tokenActions.buyItemOnSale({itemId: itemOnSaleMetadata.itemId, myAddress: account, price: itemOnSaleMetadata.price}));
         }
     };
 

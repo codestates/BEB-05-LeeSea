@@ -114,8 +114,6 @@ const removeItemOnSaleThunk = createAsyncThunk(
     `${name}/REMOVE_ITEM_ON_SALE`,
     async ({myAddress, itemId}, thunkAPI) => {
         const marketContract = await initializeMarketContract(thunkAPI);
-        console.log(myAddress);
-        console.log(itemId);
         await marketContract.methods
             .saleCancel(
                 NFT_CONTRACT_ADDR,
@@ -132,6 +130,43 @@ const removeItemOnSaleThunk = createAsyncThunk(
                         itemId: itemId,
                         seller: seller.toLowerCase(),
                         tokenId: tokenId
+                    };
+                    console.log(payload);
+                    thunkAPI.dispatch(tokenActions.removeItemOnSale(payload));
+                    return true;
+                }
+                return false;
+            });
+    }
+)
+
+const buyItemOnSale = createAsyncThunk(
+    `${name}/BUY_ITEM_ON_SALE`,
+    async ({myAddress, itemId, price}, thunkAPI) => {
+        const marketContract = await initializeMarketContract(thunkAPI);
+        await marketContract.methods
+            .buy(
+                NFT_CONTRACT_ADDR,
+                itemId
+            )
+            .send({
+                from: myAddress,
+                value: Web3.utils.toWei(String(price), 'ether')
+            })
+            .on("receipt", (receipt) => {
+                if (receipt) {
+                    const returnValues = receipt.events.ItemSold.returnValues;
+                    const tokenId = returnValues.tokenId;
+                    const itemId = returnValues.itemId;
+                    const seller = returnValues.seller;
+                    const buyer = returnValues.buyer;
+                    const price = returnValues.price;
+                    const payload = {
+                        itemId: itemId,
+                        seller: seller.toLowerCase(),
+                        buyer: buyer.toLowerCase(),
+                        tokenId: tokenId,
+                        price: Web3.utils.fromWei(price),
                     };
                     console.log(payload);
                     thunkAPI.dispatch(tokenActions.removeItemOnSale(payload));
@@ -320,5 +355,6 @@ export const tokenActions = {
     setMyTokenIds,
     addItemOnSaleThunk,
     fetchItemsOnSale,
-    removeItemOnSaleThunk
+    removeItemOnSaleThunk,
+    buyItemOnSale
 };

@@ -16,16 +16,16 @@ function Navbar({ }) {
             <nav className="nav">
                 <div className="container-fluid">
                     {/* logo */}
-                    <Link to="/" className="navbar-brand">
+                    <Link to="/BEB-05-LeeSea" className="navbar-brand">
                         {/* <img src="https://ipfs.io/ipfs/QmYU1BhbqiNreJN5T6L7LUBHtHtYiWWjeh5RhkgapEsK7Q?filename=QmYU1BhbqiNreJN5T6L7LUBHtHtYiWWjeh5RhkgapEsK7Q" alt="" width="30" height="24" className="logo d-inline-block align-text-top" /> */}
                         LeeSea
                     </Link>
                     {/* items */}
                     <div className="navbar-items">
-                        <Link to="/" className="nav-item">Home</Link>
-                        <Link to="/explore" className="nav-item">Explore</Link>
-                        <Link to="/create" className="nav-item">Create</Link>
-                        <Link to="/profile" className="nav-item">Profile</Link>
+                        <Link to="/BEB-05-LeeSea" className="nav-item">Home</Link>
+                        <Link to="/BEB-05-LeeSea/explore" className="nav-item">Explore</Link>
+                        <Link to="/BEB-05-LeeSea/create" className="nav-item">Create</Link>
+                        <Link to="/BEB-05-LeeSea/profile" className="nav-item">Profile</Link>
                         {
                             account
                             ? <img className="connect-wallet-img" src="https://seeklogo.com/images/M/metamask-logo-09EDE53DBD-seeklogo.com.png" />

@@ -11,11 +11,11 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/explore/:tokenId" element={<TokenDetail />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/BEB-05-LeeSea" element={<Home />} />
+          <Route path="/BEB-05-LeeSea/explore" element={<Explore />} />
+          <Route path="/BEB-05-LeeSea/explore/:tokenId" element={<TokenDetail />} />
+          <Route path="/BEB-05-LeeSea/create" element={<Create />} />
+          <Route path="/BEB-05-LeeSea/profile" element={<Profile />} />
       </Routes>
       <footer className='site-footer'>
         <p className='site-footer-text'>Project Team LeeSEA 🚀 </p>

@@ -22,7 +22,7 @@ function Erc721({ tokenId }) {
     }
     return tokenMetadata ? (
         <div className="erc721token">
-            <Link to={`/explore/${tokenId}`}className="token-item">
+            <Link to={`/BEB-05-LeeSea/explore/${tokenId}`}className="token-item">
                 <img
                     src={tokenMetadata.image}
                     width={300}

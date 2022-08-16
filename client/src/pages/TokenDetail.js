@@ -76,7 +76,7 @@ function TokenDetail() {
                         <label className="create-input-label">판매 가격*</label>
                         <input type="text" className="goToList detail-btn" placeholder="Ether Price (ex. 0.5Eth => 0.5)" onChange={(e) => handleChangePrice(e.target.value)} />
                         <button className="buyNFT detail-btn" onClick={sellNFT}>판매하기</button>
-                        <Link to="/explore"><button className="goToList detail-btn">목록으로</button></Link>
+                        <Link to="/BEB-05-LeeSea/explore"><button className="goToList detail-btn">목록으로</button></Link>
                         <div className={!isNotValidated ? "validation-content" : ""}>
                             {
                                 isNotValidated === 1
@@ -94,7 +94,7 @@ function TokenDetail() {
                             : (itemOnSaleMetadata?
                                 <button className="buyNFT detail-btn" onClick={buyNFT}>구매하기</button>
                                 : <button className="NotForSale detail-btn">판매 중이 아닙니다.</button>)}
-                        <Link to="/explore"><button className="goToList detail-btn">목록으로</button></Link>
+                        <Link to="/BEB-05-LeeSea/explore"><button className="goToList detail-btn">목록으로</button></Link>
                     </>
                 }
             </div>

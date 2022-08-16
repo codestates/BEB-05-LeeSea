@@ -10,8 +10,8 @@ const Home = () => {
 					<h3 className='home-description'>LeeSea가 만든 NFT마켓에 지금 참여하세요.</h3>
 				</div>
 				<div className='home-btn-area'>
-					<Link to="/explore"><button type="button" className="home-btn go-to-explore">Explore</button></Link>
-					<Link to="/create"><button type="button" className="home-btn go-to-create">Create</button></Link>
+					<Link to="/BEB-05-LeeSea/explore"><button type="button" className="home-btn go-to-explore">Explore</button></Link>
+					<Link to="/BEB-05-LeeSea/create"><button type="button" className="home-btn go-to-create">Create</button></Link>
 				</div>
 			</div>
 			<div className="home-title-image" >

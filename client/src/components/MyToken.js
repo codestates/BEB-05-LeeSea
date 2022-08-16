@@ -21,7 +21,7 @@ function MyToken({ tokenId }){
   }
   return tokenMetadata ? (
     <div className = "MyToken">
-      <Link to={`/explore/${tokenId}`}>
+      <Link to={`/BEB-05-LeeSea/explore/${tokenId}`}>
       <div className="col">
         <div className="card">
           <img src={tokenMetadata.image} className="card-img-top" alt="..." />

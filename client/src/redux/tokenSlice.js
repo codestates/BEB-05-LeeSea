@@ -86,7 +86,7 @@ const addItemOnSaleThunk = createAsyncThunk(
             )
             .send({
                 from: myAddress,
-                value: Web3.utils.toWei('0.02', 'ether')
+                value: Web3.utils.toWei('0.0001', 'ether')
             })
             .on("receipt", (receipt) => {
                 if (receipt) {

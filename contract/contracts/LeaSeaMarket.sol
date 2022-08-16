@@ -8,7 +8,7 @@ contract LeaSeaMarket {
     using Counters for Counters.Counter;
     Counters.Counter private _itemIds;
     Counters.Counter private _itemsSoldOrCanceled;
-    uint256 listingPrice = 0.02 ether;
+    uint256 listingPrice = 0.0001 ether;
     constructor () {}
 
     mapping(uint256 => MarketItem) idMarketItem;

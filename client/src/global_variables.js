@@ -1,7 +1,7 @@
 import NFT_GANACHE from "./abi/ganache/nft";
 import MARKET_GANACHE from "./abi/ganache/market";
-import NFT_RINKEBY from "./abi/rinkeby/nft";
-import MARKET_RINKEBY from "./abi/rinkeby/market";
+import NFT_ROPSTEN from "./abi/ropsten/nft";
+import MARKET_ROPSTEN from "./abi/ropsten/market";
 
 export const SKIP_PREFLIGHT_CHECK = process.env.REACT_APP_SKIP_PREFLIGHT_CHECK === 'true';
 export const USE_GANACHE = process.env.REACT_APP_USE_GANACHE === 'true';
@@ -13,7 +13,7 @@ const getNFTContractABI = () => {
     if (USE_GANACHE) {
         return NFT_GANACHE["abi"];
     } else {
-        return NFT_RINKEBY["abi"];
+        return NFT_ROPSTEN["abi"];
     }
 }
 
@@ -21,7 +21,7 @@ const getMarketContractABI = () => {
     if (USE_GANACHE) {
         return MARKET_GANACHE["abi"];
     } else {
-        return MARKET_RINKEBY["abi"];
+        return MARKET_ROPSTEN["abi"];
     }
 }
 

@@ -18,7 +18,7 @@ const fetchAccount = createAsyncThunk(
     `${name}/FETCH`,
     async () => {
         const accounts = await getAccounts();
-        return accounts[0];
+        return accounts[0].toLowerCase();
     }
 );
 

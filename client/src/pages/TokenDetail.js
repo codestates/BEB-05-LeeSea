@@ -25,7 +25,6 @@ function TokenDetail() {
 
     const buyNFT = () => {
         if (account) {
-            dispatch(tokenActions.updateTokenOwner({tokenId, myAddress: account}));
         }
     };
 
@@ -56,8 +55,13 @@ function TokenDetail() {
             <div className="tokenInfoArea">
                 <h3 className="tokenName">{tokenMetadata.name}</h3>
                 <div className="tokenDescArea">
+                    <h4 className="tokenDesc">Owner</h4>
+                    <p className="tokenDescBody owner">
+                    {itemOnSaleMetadata && itemOnSaleMetadata.seller == account ?
+                        itemOnSaleMetadata.seller : tokenMetadata.owner
+                    }
+                    </p>
                     <h4 className="tokenDesc">Description</h4>
-                    <p className="tokenDescBody">{tokenMetadata.description}</p>
                     <p className="tokenDescBody">{tokenMetadata.description}</p>
                 </div>
                 {itemOnSaleMetadata ? 

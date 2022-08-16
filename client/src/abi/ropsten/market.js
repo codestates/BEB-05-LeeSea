@@ -1,4 +1,4 @@
-{
+const MARKET_ROPSTEN = {
   "contractName": "LeaSeaMarket",
   "abi": [
     {
@@ -15225,3 +15225,4 @@
     "version": 1
   }
 }
+export default MARKET_ROPSTEN;

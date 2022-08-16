@@ -70,7 +70,7 @@ const fetchTokenWithContractAndTokenId = async (tokenContract, tokenId) => {
     return {
         ...tokenMetadata,
         tokenId: tokenId,
-        owner: tokenOwner
+        owner: tokenOwner.toLowerCase()
     };
 }
 
@@ -142,24 +142,6 @@ const removeItemOnSaleThunk = createAsyncThunk(
     }
 )
 
-const updateTokenOwner = createAsyncThunk(
-    `${name}/UPDATE_TOKEN_OWNER`,
-    async ({tokenId, myAddress}, thunkAPI) => {
-        const tokenContract = await initializeTokenContract(thunkAPI);
-        const tokenOwner = await tokenContract.methods.ownerOf(tokenId).call();
-        await tokenContract.methods
-            .transferFrom(tokenOwner, myAddress, tokenId)
-            .send({from: tokenOwner})
-            .on("receipt", (receipt) => {
-                if (receipt) {
-                    return receipt;
-                }
-                return false;
-            });
-        return await fetchTokenWithContractAndTokenId(tokenContract, tokenId);
-    }
-);
-
 const setTotalSupply = createAsyncThunk(
     `${name}/SET_TOTAL_SUPPLY`,
     async (_, thunkAPI) => {
@@ -198,6 +180,18 @@ const setMarketContract = createAsyncThunk(
         return thunkAPI.getState().marketContract
     }
 );
+
+// const fetchMyTokenIds = async (myAddress, tokenContract, tokenId) => {
+//     const myTokenIds = [];
+//     const tokenContract = await initializeTokenContract(thunkAPI);
+//     const totalSupply = await tokenContract.methods.totalSupply().call();
+//     for (let tokenId = 1; tokenId<=totalSupply; tokenId++){
+//         const tokenOwner = await tokenContract.methods.ownerOf(tokenId).call();
+//         if (String(tokenOwner).toLowerCase()===myAddress) {
+//             myTokenIds.push(tokenId);
+//         }
+//     }
+// }
 
 const setMyTokenIds = createAsyncThunk(
     `${name}/SET_MY_TOKEN_IDS`,
@@ -309,18 +303,6 @@ export const tokenSlice = createSlice({
         [setMyTokenIds.fulfilled.type]: (state, action) => {
             state.myTokenIds = action.payload;
         },
-        [updateTokenOwner.fulfilled.type]: (state, action) => {
-            state.tokens = {
-                ...state.tokens,
-                [action.payload.tokenId]: {
-                    name: action.payload.name,
-                    description: action.payload.description,
-                    collection: action.payload.properties.collection || 'pepe',
-                    image: action.payload.image,
-                    owner: action.payload.owner
-                }
-            }
-        },
         [fetchItemsOnSale.fulfilled.type]: (state, action) => {
             state.itemsOnSale = action.payload;
         }
@@ -334,7 +316,6 @@ export const tokenActions = {
     setTokenContract,
     setMarketContract,
     setMyTokenIds,
-    updateTokenOwner,
     addItemOnSaleThunk,
     fetchItemsOnSale,
     removeItemOnSaleThunk

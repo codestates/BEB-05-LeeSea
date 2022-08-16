@@ -12,6 +12,7 @@ function Explore(){
         dispatch(tokenActions.setTotalSupply());
         if (account) {
           dispatch(tokenActions.setMyTokenIds(account));
+          dispatch(tokenActions.fetchItemsOnSale());
         }
     }, [account])
     return(

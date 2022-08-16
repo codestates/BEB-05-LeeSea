@@ -282,6 +282,12 @@ a {
 .token-detail-page .tokenInfoArea .goToList:hover {
   background-color: #f1f1f1;
 }
+.token-detail-page .tokenInfoArea .NotForSale {
+  background-color: #f1f1f1;
+  color: #14171a;
+  border: 1px solid #999;
+  font-weight: 400;
+}
 
 .home-container {
   display: flex;

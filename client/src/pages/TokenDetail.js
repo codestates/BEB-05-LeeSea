@@ -91,7 +91,9 @@ function TokenDetail() {
                     : <>
                         {itemOnSaleMetadata && account && itemOnSaleMetadata.seller == account ?
                             <button className="buyNFT detail-btn" onClick={cancelSale}>판매취소</button>
-                            : <button className="buyNFT detail-btn" onClick={buyNFT}>구매하기</button>}
+                            : (itemOnSaleMetadata?
+                                <button className="buyNFT detail-btn" onClick={buyNFT}>구매하기</button>
+                                : <button className="NotForSale detail-btn">판매 중이 아닙니다.</button>)}
                         <Link to="/explore"><button className="goToList detail-btn">목록으로</button></Link>
                     </>
                 }

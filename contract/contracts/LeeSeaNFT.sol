@@ -7,13 +7,13 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-contract LeaSeaNFT is ERC721URIStorage, Ownable, ERC721Enumerable {
+contract LeeSeaNFT is ERC721URIStorage, Ownable, ERC721Enumerable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
     address marketContractAddress;
 
-    constructor(address contractAddress) ERC721("leaSeaNFT", "NFT"){
+    constructor(address contractAddress) ERC721("leeSeaNFT", "NFT"){
         marketContractAddress = contractAddress;
     }
 

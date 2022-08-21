@@ -2866,8 +2866,8 @@
     "version": "0.8.15+commit.e14f2714.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.8",
-  "updatedAt": "2022-08-16T05:38:54.151Z",
+  "schemaVersion": "3.4.9",
+  "updatedAt": "2022-08-21T10:42:00.204Z",
   "devdoc": {
     "details": "String operations.",
     "kind": "dev",

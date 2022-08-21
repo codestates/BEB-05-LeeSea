@@ -57,7 +57,7 @@ function TokenDetail() {
                 <div className="tokenDescArea">
                     <h4 className="tokenDesc">Owner</h4>
                     <p className="tokenDescBody owner">
-                    {itemOnSaleMetadata && itemOnSaleMetadata.seller == account ?
+                    {itemOnSaleMetadata ?
                         itemOnSaleMetadata.seller : tokenMetadata.owner
                     }
                     </p>
